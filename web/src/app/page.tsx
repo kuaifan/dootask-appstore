@@ -9,8 +9,8 @@ import {useTheme} from "next-themes"
 
 export default function Home() {
   const {setTheme, resolvedTheme} = useTheme()
+  const t = useTranslations('common');
 
-  const t = useTranslations('Home');
   return (
     <main className="min-h-screen p-6">
       <div className="container mx-auto">
