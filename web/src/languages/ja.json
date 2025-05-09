@@ -5,7 +5,11 @@
   "app": {
     "all": "すべて",
     "installed": "インストール済み",
-    "install": "インストール",
+    "installing": "インストール",
+    "uninstalling": "インストール",
+    "not_installed": "未インストール",
+    "error": "エラー",
+    "loading": "ロード中",
     "noApps": "アプリなし",
     "totalItems": "合計{count}件",
     "page": "ページ"

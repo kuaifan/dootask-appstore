@@ -5,7 +5,11 @@
   "app": {
     "all": "Все",
     "installed": "Установлено",
-    "install": "Установить",
+    "installing": "Установка",
+    "uninstalling": "Удаление",
+    "not_installed": "Не установлено",
+    "error": "Ошибка",
+    "loading": "Загрузка",
     "noApps": "Нет приложений",
     "totalItems": "Всего {count} элементов",
     "page": "Страница"

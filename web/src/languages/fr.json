@@ -4,10 +4,14 @@
   },
   "app": {
     "all": "Tous",
-    "installed": "Installé",
-    "install": "Installer",
-    "noApps": "Aucune application",
-    "totalItems": "Total {count} éléments",
+    "installed": "Install ",
+    "installing": "Installation en cours",
+    "uninstalling": "D sinstallation en cours",
+    "not_installed": "Non install ",
+    "error": "Erreur",
+    "loading": "Chargement en cours",
+    "noApps": "Pas d'applications",
+    "totalItems": "Total {count}  l ments",
     "page": "Page"
   },
   "categories": {

@@ -4,6 +4,17 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
+  images: {
+    domains: ['127.0.0.1'],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
+        port: '2222',
+        pathname: '/**',
+      },
+    ],
+  },
   // 添加代理配置，用于本地开发时避免跨域问题
   async headers() {
     return [

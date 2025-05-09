@@ -5,7 +5,11 @@
   "app": {
     "all": "全部",
     "installed": "已安裝",
-    "install": "安裝",
+    "installing": "安裝中",
+    "uninstalling": "卸載中",
+    "not_installed": "未安裝",
+    "error": "錯誤",
+    "loading": "加載中",
     "noApps": "暫無應用",
     "totalItems": "共{count}條",
     "page": "頁"

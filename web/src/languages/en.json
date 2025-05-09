@@ -5,8 +5,12 @@
   "app": {
     "all": "All",
     "installed": "Installed",
-    "install": "Install",
-    "noApps": "No Applications",
+    "installing": "Installing",
+    "uninstalling": "Uninstalling",
+    "not_installed": "Not installed",
+    "error": "Error",
+    "loading": "Loading",
+    "noApps": "No apps",
     "totalItems": "Total {count} items",
     "page": "Page"
   },

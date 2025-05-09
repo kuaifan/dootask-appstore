@@ -4,9 +4,13 @@
   },
   "app": {
     "all": "Semua",
-    "installed": "Terpasang",
-    "install": "Pasang",
-    "noApps": "Tidak Ada Aplikasi",
+    "installed": "Terinstal",
+    "installing": "Menginstal",
+    "uninstalling": "Menghapus",
+    "not_installed": "Belum Terinstal",
+    "error": "Kesalahan",
+    "loading": "Memuat",
+    "noApps": "Tidak ada aplikasi",
     "totalItems": "Total {count} item",
     "page": "Halaman"
   },

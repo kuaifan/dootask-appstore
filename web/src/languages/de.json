@@ -5,9 +5,13 @@
   "app": {
     "all": "Alle",
     "installed": "Installiert",
-    "install": "Installieren",
-    "noApps": "Keine Apps",
-    "totalItems": "Insgesamt {count} Einträge",
+    "installing": "Wird installiert",
+    "uninstalling": "Wird deinstalliert",
+    "not_installed": "Nicht installiert",
+    "error": "Fehler",
+    "loading": "Ladevorgang",
+    "noApps": "Keine Apps verf gbar",
+    "totalItems": "Insgesamt {count} Eintr ge",
     "page": "Seite"
   },
   "categories": {
