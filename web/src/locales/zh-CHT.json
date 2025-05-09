@@ -11,7 +11,7 @@
     "error": "錯誤",
     "loading": "加載中",
     "noApps": "暫無應用",
-    "totalItems": "共{count}條",
+    "totalItems": "共{{count}}條",
     "page": "頁面",
     "search": "搜尋"
   }

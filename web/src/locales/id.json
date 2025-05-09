@@ -11,7 +11,7 @@
     "error": "Kesalahan",
     "loading": "Memuat",
     "noApps": "Tidak ada aplikasi",
-    "totalItems": "Total {count} item",
+    "totalItems": "Total {{count}} item",
     "page": "Halaman",
     "search": "Cari"
   }

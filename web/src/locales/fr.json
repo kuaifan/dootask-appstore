@@ -11,7 +11,7 @@
     "error": "Erreur",
     "loading": "Chargement en cours",
     "noApps": "Pas d'applications",
-    "totalItems": "Total {count}  l ments",
+    "totalItems": "Total {{count}}  l ments",
     "page": "Page",
     "search": "Recherche"
   }

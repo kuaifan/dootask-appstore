@@ -11,7 +11,7 @@
     "error": "エラー",
     "loading": "ロード中",
     "noApps": "アプリなし",
-    "totalItems": "合計{count}件",
+    "totalItems": "合計{{count}}件",
     "page": "ページ",
     "search": "検索"
   }

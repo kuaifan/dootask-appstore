@@ -1,6 +1,7 @@
 import {Badge} from "@/components/ui/badge";
 import {Card, CardContent, CardHeader} from "@/components/ui/card";
-import {useTranslations} from "next-intl";
+import Icon from '../assets/icon.svg'
+import {useTranslation} from "react-i18next";
 
 interface AppCardProps {
   icon?: string;
@@ -11,7 +12,7 @@ interface AppCardProps {
 }
 
 export function AppCard({icon, title, description, status, category}: AppCardProps) {
-  const t = useTranslations();
+  const {t} = useTranslation();
 
   const statusClass = status === "installed" ?
     "bg-green-100 text-green-800 hover:bg-green-200" :
@@ -29,7 +30,7 @@ export function AppCard({icon, title, description, status, category}: AppCardPro
                 </div>
               ) : (
                 <div className="relative h-10 w-10">
-                  <img src="/icons/default-app-icon.svg" alt={title} className="object-cover rounded-md" />
+                  <img src={Icon} alt={title} className="object-cover rounded-md" />
                 </div>
               )}
             </div>

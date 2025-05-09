@@ -11,7 +11,7 @@
     "error": "错误",
     "loading": "加载中",
     "noApps": "暂无应用",
-    "totalItems": "共{count}条",
+    "totalItems": "共{{count}}条",
     "page": "页",
     "search": "搜索应用"
   }

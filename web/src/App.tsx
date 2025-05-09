@@ -1,37 +1,28 @@
-"use client"
+import {useEffect, useState} from 'react'
+import {Button} from './components/ui/button'
+import {useTranslation} from "react-i18next";
+import {getLanguageName, requestAPI} from "@dootask/tools";
+import {ChevronLeft, ChevronRight, LoaderCircle, RefreshCw} from "lucide-react";
+import {AppSearch} from './components/app-search';
+import {Tabs, TabsContent, TabsList, TabsTrigger} from './components/ui/tabs';
+import {AppCard} from './components/app-card';
+import type {AppItem} from "@/type/app.ts";
+import i18n from "@/i18n";
 
-import {useTranslations} from 'next-intl';
-import {appReady, requestAPI} from "@dootask/tools";
-import {Button} from "@/components/ui/button";
-import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
-import {AppCard} from "@/components/app-card";
-import {AppSearch} from "@/components/app-search";
-import {ChevronLeft, ChevronRight, RefreshCw, LoaderCircle} from 'lucide-react';
-import { useState, useEffect } from 'react';
-import {AppItem} from "@/type/app";
-
-let loadRun = true;
-
-export default function Home() {
-  const t = useTranslations();
+function App() {
+  const {t} = useTranslation();
   const [apps, setApps] = useState<AppItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [num, setNum] = useState(1);
+  const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState('all');
   const [category, setCategory] = useState('all');
   const [availableCategories, setAvailableCategories] = useState<string[]>(['all']);
   const [searchKeyword, setSearchKeyword] = useState('');
 
-  // 获取应用列表数据
-  appReady().then(async () => {
-    while (loadRun) {
-      await new Promise(resolve => setTimeout(resolve, 10));
-      setNum(num + 1);
-    }
-  });
 
   useEffect(() => {
-    loadRun = false;
+    // 设置语言
+    i18n.changeLanguage(getLanguageName()).then(() => {})
+    // 获取应用列表数据
     fetchApps();
   }, [])
 
@@ -55,7 +46,7 @@ export default function Home() {
       const allTags = apps.flatMap(app => app.info.tags || []);
       // 去重并保留非空标签
       const uniqueTags = [...new Set(allTags)].filter(tag => tag.trim() !== '');
-      // 最多保留4个标签（加上'all'总共5个）
+      // 最多保留4个标签（加上 'all' 总共5个）
       const limitedTags = uniqueTags.slice(0, 4);
       // 始终保留 'all' 作为第一个选项
       const categories = ['all', ...limitedTags];
@@ -181,22 +172,24 @@ export default function Home() {
 
         {getFilteredApps().length > 0 && (
           <div className="flex justify-between items-center mt-8 text-sm text-gray-500">
-            <div>{t('app.totalItems', { count: getFilteredApps().length })}</div>
+            <div>{t('app.totalItems', {count: getFilteredApps().length})}</div>
             <div className="flex items-center gap-x-2">
               <Button variant="outline" size="icon" className="w-7 h-7">
-                <ChevronLeft />
+                <ChevronLeft/>
               </Button>
               <span>1</span>
               <span>/</span>
               <span>1</span>
               <span>{t('app.page')}</span>
               <Button variant="outline" size="icon" className="w-7 h-7">
-                <ChevronRight />
+                <ChevronRight/>
               </Button>
             </div>
           </div>
         )}
       </div>
     </main>
-  );
+  )
 }
+
+export default App

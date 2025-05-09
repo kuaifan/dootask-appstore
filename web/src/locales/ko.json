@@ -11,7 +11,7 @@
     "error": "오류",
     "loading": "로딩",
     "noApps": "미설치",
-    "totalItems": "총 {count}개",
+    "totalItems": "총 {{count}}개",
     "page": "페이지",
     "search": "검색"
   }

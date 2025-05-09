@@ -1,23 +1,23 @@
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {Search} from "lucide-react";
-import { useTranslations } from "next-intl";
-import { useState, ChangeEvent } from "react";
+import {type ChangeEvent, useState} from "react";
+import {useTranslation} from "react-i18next";
 
 interface AppSearchProps {
   onSearch: (keyword: string) => void;
 }
 
 export function AppSearch({ onSearch }: AppSearchProps) {
-  const t = useTranslations();
+  const {t} = useTranslation();
   const [keyword, setKeyword] = useState("");
-  
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setKeyword(value);
     onSearch(value);
   };
-  
+
   const handleSearch = () => {
     onSearch(keyword);
   };

@@ -11,7 +11,7 @@
     "error": "Ошибка",
     "loading": "Загрузка",
     "noApps": "Нет приложений",
-    "totalItems": "Всего {count} элементов",
+    "totalItems": "Всего {{count}} элементов",
     "page": "Страница",
     "search": "Поиск"
   }

@@ -11,7 +11,7 @@
     "error": "Error",
     "loading": "Loading",
     "noApps": "No apps",
-    "totalItems": "Total {count} items",
+    "totalItems": "Total {{count}} items",
     "page": "Page",
     "search": "Search"
   }
