@@ -1,11 +1,15 @@
+"use client"
 import {useTranslations} from 'next-intl';
 import {Button} from "@/components/ui/button";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {AppCard} from "@/components/app-card";
-import {Search} from "@/components/search";
-import Image from "next/image";
+import {AppSearch} from "@/components/app-search";
+import {RefreshCw} from 'lucide-react';
+import {useTheme} from "next-themes"
 
 export default function Home() {
+  const {setTheme, resolvedTheme} = useTheme()
+
   const t = useTranslations('Home');
   return (
     <main className="min-h-screen p-6">
@@ -13,24 +17,22 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div className="flex items-center">
             <h1 className="text-2xl font-bold mr-2">{t('title')}</h1>
-            <Button variant="ghost" size="icon" className="rounded-full">
-              <div className="relative w-[18px] h-[18px]">
-                <Image src="/icons/refresh.svg" alt="刷新" fill/>
-              </div>
+            <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setTheme(resolvedTheme == "dark" ? "light" : "dark")}>
+              <RefreshCw/>
             </Button>
           </div>
           <div className="w-full sm:w-auto sm:min-w-[300px]">
-            <Search/>
+            <AppSearch/>
           </div>
         </div>
 
         <div className="flex gap-x-4 mb-6">
-          <Button variant="ghost" className="px-4 py-2 text-sm bg-gray-100 rounded-full">全部</Button>
+          <Button variant="secondary" className="px-4 py-2 text-sm rounded-full">全部</Button>
           <Button variant="ghost" className="px-4 py-2 text-sm rounded-full">已安装</Button>
         </div>
 
         <Tabs defaultValue="all" className="mb-6">
-          <TabsList className="grid w-full grid-cols-5 max-w-md bg-gray-100 p-1">
+          <TabsList className="grid w-full grid-cols-5 max-w-md light:bg-gray-100">
             <TabsTrigger value="all" className="text-sm">全部</TabsTrigger>
             <TabsTrigger value="database" className="text-sm">Database</TabsTrigger>
             <TabsTrigger value="oss" className="text-sm">Oss</TabsTrigger>

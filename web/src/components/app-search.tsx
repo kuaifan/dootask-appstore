@@ -1,8 +1,8 @@
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
-import Image from "next/image";
+import {Search} from "lucide-react";
 
-export function Search() {
+export function AppSearch() {
   return (
     <div className="relative w-full">
       <Input
@@ -15,9 +15,7 @@ export function Search() {
         variant="ghost"
         className="absolute right-0 top-0 h-full px-3 py-2 text-muted-foreground"
       >
-        <div className="relative w-[16px] h-[16px]">
-          <Image src="/icons/search.svg" alt="搜索" fill/>
-        </div>
+        <Search />
         <span className="sr-only">搜索</span>
       </Button>
     </div>
