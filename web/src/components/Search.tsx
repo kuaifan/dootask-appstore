@@ -1,5 +1,5 @@
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button";
 import Image from "next/image";
 
 export function Search() {
@@ -16,7 +16,7 @@ export function Search() {
         className="absolute right-0 top-0 h-full px-3 py-2 text-muted-foreground"
       >
         <div className="relative w-[16px] h-[16px]">
-          <Image src="/icons/search.svg" alt="搜索" fill />
+          <Image src="/icons/search.svg" alt="搜索" fill/>
         </div>
         <span className="sr-only">搜索</span>
       </Button>

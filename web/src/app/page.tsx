@@ -1,24 +1,26 @@
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AppCard } from "@/components/app-card";
-import { Search } from "@/components/search";
+import {useTranslations} from 'next-intl';
+import {Button} from "@/components/ui/button";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import {AppCard} from "@/components/app-card";
+import {Search} from "@/components/search";
 import Image from "next/image";
 
 export default function Home() {
+  const t = useTranslations('Home');
   return (
     <main className="min-h-screen p-6">
       <div className="container mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold mr-2">应用商店</h1>
+            <h1 className="text-2xl font-bold mr-2">{t('title')}</h1>
             <Button variant="ghost" size="icon" className="rounded-full">
               <div className="relative w-[18px] h-[18px]">
-                <Image src="/icons/refresh.svg" alt="刷新" fill />
+                <Image src="/icons/refresh.svg" alt="刷新" fill/>
               </div>
             </Button>
           </div>
           <div className="w-full sm:w-auto sm:min-w-[300px]">
-            <Search />
+            <Search/>
           </div>
         </div>
 
@@ -124,7 +126,7 @@ export default function Home() {
           <div className="flex items-center gap-x-2">
             <Button variant="outline" size="icon" className="w-7 h-7">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-left">
-                <path d="m15 18-6-6 6-6" />
+                <path d="m15 18-6-6 6-6"/>
               </svg>
             </Button>
             <span>1</span>
@@ -133,7 +135,7 @@ export default function Home() {
             <span>页</span>
             <Button variant="outline" size="icon" className="w-7 h-7">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-right">
-                <path d="m9 18 6-6-6-6" />
+                <path d="m9 18 6-6-6-6"/>
               </svg>
             </Button>
           </div>
