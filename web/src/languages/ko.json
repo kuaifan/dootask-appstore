@@ -1,0 +1,19 @@
+{
+  "common": {
+    "title": "앱 스토어"
+  },
+  "app": {
+    "all": "전체",
+    "installed": "설치됨",
+    "install": "설치",
+    "noApps": "앱 없음",
+    "totalItems": "총 {count}개",
+    "page": "페이지"
+  },
+  "categories": {
+    "database": "데이터베이스",
+    "oss": "오브젝트 스토리지",
+    "tool": "도구",
+    "note": "노트"
+  }
+}

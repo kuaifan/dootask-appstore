@@ -1,20 +1,22 @@
 import {Badge} from "@/components/ui/badge";
 import {Card, CardContent, CardHeader} from "@/components/ui/card";
 import Image from "next/image";
+import {useTranslations} from "next-intl";
 
 interface AppCardProps {
   icon?: string;
   title: string;
   description: string;
-  status: "已安装" | "安装";
+  status: string;
   category?: string | string[];
 }
 
 export function AppCard({icon, title, description, status, category}: AppCardProps) {
-  const statusClass = {
-    "已安装": "bg-green-100 text-green-800 hover:bg-green-200",
-    "安装": "bg-blue-100 text-blue-800 hover:bg-blue-200",
-  }[status];
+  const t = useTranslations();
+
+  const statusClass = status === "installed" ?
+    "bg-green-100 text-green-800 hover:bg-green-200" :
+    "bg-blue-100 text-blue-800 hover:bg-blue-200";
 
   return (
     <Card className="flex flex-col overflow-hidden border px-2 py-5">
@@ -59,8 +61,8 @@ export function AppCard({icon, title, description, status, category}: AppCardPro
               )}
             </div>
           </div>
-          <div className={`inline-flex items-center px-3 py-1 text-xs font-medium rounded-md ${statusClass} whitespace-nowrap`}>
-            {status}
+          <div className={`inline-flex items-center px-3 py-1 text-xs font-medium rounded-md ${statusClass} whitespace-nowrap cursor-pointer`}>
+            {t('app.' + status)}
           </div>
         </div>
       </CardHeader>

@@ -1,5 +1,19 @@
 {
   "common": {
     "title": "App Store"
+  },
+  "app": {
+    "all": "All",
+    "installed": "Installed",
+    "install": "Install",
+    "noApps": "No Applications",
+    "totalItems": "Total {count} items",
+    "page": "Page"
+  },
+  "categories": {
+    "database": "Database",
+    "oss": "OSS",
+    "tool": "Tool",
+    "note": "Note"
   }
 }

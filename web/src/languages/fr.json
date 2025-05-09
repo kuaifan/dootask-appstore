@@ -1,0 +1,19 @@
+{
+  "common": {
+    "title": "App Store"
+  },
+  "app": {
+    "all": "Tous",
+    "installed": "Installé",
+    "install": "Installer",
+    "noApps": "Aucune application",
+    "totalItems": "Total {count} éléments",
+    "page": "Page"
+  },
+  "categories": {
+    "database": "Base de données",
+    "oss": "Stockage d'objets",
+    "tool": "Outil",
+    "note": "Note"
+  }
+}

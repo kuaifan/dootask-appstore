@@ -1,0 +1,19 @@
+{
+  "common": {
+    "title": "アプリストア"
+  },
+  "app": {
+    "all": "すべて",
+    "installed": "インストール済み",
+    "install": "インストール",
+    "noApps": "アプリなし",
+    "totalItems": "合計{count}件",
+    "page": "ページ"
+  },
+  "categories": {
+    "database": "データベース",
+    "oss": "オブジェクトストレージ",
+    "tool": "ツール",
+    "note": "ノート"
+  }
+}

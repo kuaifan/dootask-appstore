@@ -1,5 +1,19 @@
 {
   "common": {
     "title": "应用商店"
+  },
+  "app": {
+    "all": "全部",
+    "installed": "已安装",
+    "install": "安装",
+    "noApps": "暂无应用",
+    "totalItems": "共{count}条",
+    "page": "页"
+  },
+  "categories": {
+    "database": "数据库",
+    "oss": "对象存储",
+    "tool": "工具",
+    "note": "笔记"
   }
 }

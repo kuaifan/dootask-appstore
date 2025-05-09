@@ -1,0 +1,19 @@
+{
+  "common": {
+    "title": "Toko Aplikasi"
+  },
+  "app": {
+    "all": "Semua",
+    "installed": "Terpasang",
+    "install": "Pasang",
+    "noApps": "Tidak Ada Aplikasi",
+    "totalItems": "Total {count} item",
+    "page": "Halaman"
+  },
+  "categories": {
+    "database": "Database",
+    "oss": "Penyimpanan Objek",
+    "tool": "Alat",
+    "note": "Catatan"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "common": {
+    "title": "應用商店"
+  },
+  "app": {
+    "all": "全部",
+    "installed": "已安裝",
+    "install": "安裝",
+    "noApps": "暫無應用",
+    "totalItems": "共{count}條",
+    "page": "頁"
+  },
+  "categories": {
+    "database": "數據庫",
+    "oss": "對象存儲",
+    "tool": "工具",
+    "note": "筆記"
+  }
+}
