@@ -1,15 +1,18 @@
 "use client"
+
 import {useTranslations} from 'next-intl';
+import {appReady, getAppData} from "@dootask/tools";
 import {Button} from "@/components/ui/button";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {AppCard} from "@/components/app-card";
 import {AppSearch} from "@/components/app-search";
 import {ChevronLeft, ChevronRight, RefreshCw} from 'lucide-react';
-import {useTheme} from "next-themes"
-
 export default function Home() {
-  const {setTheme, resolvedTheme} = useTheme()
   const t = useTranslations();
+
+  appReady().then(() => {
+    console.log(getAppData());
+  })
 
   return (
     <main className="min-h-screen p-6">
@@ -17,7 +20,7 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div className="flex items-center">
             <h1 className="text-2xl font-bold mr-2">{t('common.title')}</h1>
-            <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setTheme(resolvedTheme == "dark" ? "light" : "dark")}>
+            <Button variant="ghost" size="icon" className="rounded-full">
               <RefreshCw/>
             </Button>
           </div>

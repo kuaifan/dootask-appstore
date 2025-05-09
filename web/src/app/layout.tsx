@@ -1,5 +1,4 @@
 import {NextIntlClientProvider} from 'next-intl';
-import {ThemeProvider} from "@/components/theme-provider"
 import {getLocale, getTranslations} from 'next-intl/server';
 import React from "react";
 import "./globals.css";
@@ -16,16 +15,9 @@ export default async function RootLayout({children}: {
 }) {
   const locale = await getLocale();
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale}>
     <body className="antialiased">
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-    >
       <NextIntlClientProvider>{children}</NextIntlClientProvider>
-    </ThemeProvider>
     </body>
     </html>
   );
