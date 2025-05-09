@@ -10,23 +10,28 @@ import {ChevronLeft, ChevronRight, RefreshCw, LoaderCircle} from 'lucide-react';
 import { useState, useEffect } from 'react';
 import {AppItem} from "@/type/app";
 
+let loadRun = true;
+
 export default function Home() {
   const t = useTranslations();
   const [apps, setApps] = useState<AppItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [num, setNum] = useState(1);
   const [filter, setFilter] = useState('all');
   const [category, setCategory] = useState('all');
   const [availableCategories, setAvailableCategories] = useState<string[]>(['all']);
   const [searchKeyword, setSearchKeyword] = useState('');
 
   // 获取应用列表数据
-  appReady().then(() => {
-    console.log(1);
-    setTimeout(() => setLoading(false), 300)
+  appReady().then(async () => {
+    while (loadRun) {
+      await new Promise(resolve => setTimeout(resolve, 10));
+      setNum(num + 1);
+    }
   });
 
   useEffect(() => {
-    console.log(2);
+    loadRun = false;
     fetchApps();
   }, [])
 
