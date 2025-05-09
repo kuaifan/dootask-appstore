@@ -1,7 +1,7 @@
 "use client"
 
 import {useTranslations} from 'next-intl';
-import {appReady, getAppData} from "@dootask/tools";
+import {appReady, requestAPI} from "@dootask/tools";
 import {Button} from "@/components/ui/button";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {AppCard} from "@/components/app-card";
@@ -11,7 +11,11 @@ export default function Home() {
   const t = useTranslations();
 
   appReady().then(() => {
-    console.log(getAppData());
+    requestAPI({
+      url: "system/setting",
+    }).then((res) => {
+      console.log(res);
+    })
   })
 
   return (
