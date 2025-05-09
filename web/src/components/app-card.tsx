@@ -47,7 +47,7 @@ export function AppCard({ icon, title, description, status, category }: AppCardP
                         <div className="ml-3 min-h-12 flex flex-col justify-center">
                             <h3 className="font-medium">{title}</h3>
                             {category && (
-                                <div className="flex flex-wrap gap-1 mt-1">
+                                <div className="flex flex-wrap gap-1 mt-2">
                                     {Array.isArray(category) ? (
                                         category.map((cat, index) => (
                                             <Badge key={index} variant="outline" className="text-xs">{cat}</Badge>

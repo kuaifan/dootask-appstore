@@ -4,6 +4,9 @@ name:
 description:
   en: official app store
   zh: 官方应用商店
+tags:
+  - Tool
+  - Application
 author: DooTask
 website: https://www.dootask.com
 

@@ -33,6 +33,9 @@ name: OKR                          # Application name (multi-language support)
 description:                       # Application description (multi-language support)
   en: A tool that helps teams efficiently set, track, and achieve objectives and key results, making goal management simple and transparent.
   zh: 一款帮助团队高效设定、跟踪和实现目标与关键结果的工具，让目标管理变得简单透明。
+tags:                              # Application tags
+  - Tool
+  - Application
 author: DooTask                    # Author name
 website: https://www.dootask.com   # Website URL
 github: https://github.com/...     # GitHub repository URL (optional)
