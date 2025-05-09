@@ -13,7 +13,7 @@ import {AppItem} from "@/type/app";
 export default function Home() {
   const t = useTranslations();
   const [apps, setApps] = useState<AppItem[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
   const [category, setCategory] = useState('all');
   const [availableCategories, setAvailableCategories] = useState<string[]>(['all']);
@@ -22,7 +22,7 @@ export default function Home() {
   // 获取应用列表数据
   appReady().then(() => {
     console.log(1);
-    fetchApps();
+    setTimeout(() => setLoading(false), 300)
   });
 
   useEffect(() => {
