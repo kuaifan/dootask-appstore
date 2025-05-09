@@ -12,12 +12,7 @@
     "loading": "Memuat",
     "noApps": "Tidak ada aplikasi",
     "totalItems": "Total {count} item",
-    "page": "Halaman"
-  },
-  "categories": {
-    "database": "Database",
-    "oss": "Penyimpanan Objek",
-    "tool": "Alat",
-    "note": "Catatan"
+    "page": "Halaman",
+    "search": "Cari"
   }
 }

@@ -12,12 +12,7 @@
     "loading": "加載中",
     "noApps": "暫無應用",
     "totalItems": "共{count}條",
-    "page": "頁"
-  },
-  "categories": {
-    "database": "數據庫",
-    "oss": "對象存儲",
-    "tool": "工具",
-    "note": "筆記"
+    "page": "頁面",
+    "search": "搜尋"
   }
 }

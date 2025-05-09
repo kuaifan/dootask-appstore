@@ -12,12 +12,7 @@
     "loading": "로딩",
     "noApps": "미설치",
     "totalItems": "총 {count}개",
-    "page": "페이지"
-  },
-  "categories": {
-    "database": "데이터베이스",
-    "oss": "오브젝트 스토리지",
-    "tool": "도구",
-    "note": "노트"
+    "page": "페이지",
+    "search": "검색"
   }
 }

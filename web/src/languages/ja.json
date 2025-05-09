@@ -12,12 +12,7 @@
     "loading": "ロード中",
     "noApps": "アプリなし",
     "totalItems": "合計{count}件",
-    "page": "ページ"
-  },
-  "categories": {
-    "database": "データベース",
-    "oss": "オブジェクトストレージ",
-    "tool": "ツール",
-    "note": "ノート"
+    "page": "ページ",
+    "search": "検索"
   }
 }

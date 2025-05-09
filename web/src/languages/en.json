@@ -12,12 +12,7 @@
     "loading": "Loading",
     "noApps": "No apps",
     "totalItems": "Total {count} items",
-    "page": "Page"
-  },
-  "categories": {
-    "database": "Database",
-    "oss": "OSS",
-    "tool": "Tool",
-    "note": "Note"
+    "page": "Page",
+    "search": "Search"
   }
 }

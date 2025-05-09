@@ -12,12 +12,7 @@
     "loading": "Ladevorgang",
     "noApps": "Keine Apps verf gbar",
     "totalItems": "Insgesamt {count} Eintr ge",
-    "page": "Seite"
-  },
-  "categories": {
-    "database": "Datenbank",
-    "oss": "Objektspeicher",
-    "tool": "Werkzeug",
-    "note": "Notiz"
+    "page": "Seite",
+    "search": "Suche"
   }
 }

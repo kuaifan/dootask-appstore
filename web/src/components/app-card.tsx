@@ -26,23 +26,11 @@ export function AppCard({icon, title, description, status, category}: AppCardPro
             <div className="flex h-12 w-12 items-center justify-center rounded-md">
               {icon ? (
                 <div className="relative h-10 w-10">
-                  <Image
-                    src={icon}
-                    alt={title}
-                    fill
-                    sizes="40px"
-                    style={{objectFit: "contain"}}
-                  />
+                  <img src={icon} alt={title} className="object-cover rounded-md" />
                 </div>
               ) : (
                 <div className="relative h-10 w-10">
-                  <Image
-                    src="/icons/default-app-icon.svg"
-                    alt={title}
-                    fill
-                    sizes="40px"
-                    style={{objectFit: "contain"}}
-                  />
+                  <img src="/icons/default-app-icon.svg" alt={title} className="object-cover rounded-md" />
                 </div>
               )}
             </div>
