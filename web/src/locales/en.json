@@ -1,25 +1,51 @@
 {
   "app": {
     "all": "All",
-    "detail": "Application Details",
+    "detail": "App Details",
     "error": "Error",
-    "install": "",
+    "install": "Install",
     "installed": "Installed",
     "installing": "Installing",
     "loading": "Loading",
-    "noApps": "No apps",
-    "no_document": "",
-    "not_installed": "Not installed",
+    "noApps": "No Apps",
+    "no_document": "No Documentation",
+    "no_log": "No Logs",
+    "not_installed": "Not Installed",
     "page": "Page",
-    "search": "Search",
+    "search": "Search Apps",
     "totalItems": "Total {{count}} items",
-    "uninstall": "",
+    "uninstall": "Uninstall",
     "uninstalling": "Uninstalling"
   },
   "common": {
-    "document": "",
-    "open_community": "",
+    "document": "Documentation",
+    "open_community": "Open Community",
     "title": "App Store",
-    "website": ""
+    "website": "Official Website"
+  },
+  "label": {
+    "detail": "Details",
+    "log": "Logs"
+  },
+  "install": {
+    "basic_info": "Basic Information",
+    "app_config": "App Configuration",
+    "resource_limit": "Resource Limits",
+    "name": "Name",
+    "version": "Version",
+    "select_version": "Select Version",
+    "latest_version": "Latest Version",
+    "cpu_limit": "CPU Limit (cores)",
+    "cpu_limit_placeholder": "Set to 0 to disable limit",
+    "memory_limit": "Memory Limit (MB/GB)",
+    "memory_limit_placeholder": "Example: 512MB, 1GB, set to 0 to disable limit",
+    "install_app": "Install App",
+    "errors": {
+      "version_required": "Please select a version",
+      "cpu_required": "Please enter CPU limit",
+      "cpu_invalid": "CPU limit must be greater than or equal to 0",
+      "memory_required": "Please enter memory limit",
+      "memory_invalid": "Invalid memory format, please enter an integer or with unit (MB/GB)"
+    }
   }
 }

@@ -259,7 +259,7 @@ function App() {
           {preInstallApp && (
             <div className="fixed top-0 right-0 left-0 bottom-0 bg-black/40 animate-fade-in pointer-events-auto" style={{ zIndex: modalZIndex + 2 }}></div>
           )}
-          <DrawerContent style={{ zIndex: modalZIndex + 3 }} className="rounded-l-xl !w-[900px] !max-w-[80vw]">
+          <DrawerContent style={{ zIndex: modalZIndex + 3 }} className="rounded-l-xl !w-[600px] !max-w-[80vw]">
             <DrawerHeader>
               <DrawerTitle className="flex items-center justify-between">
                 <div className="text-base">
@@ -270,7 +270,7 @@ function App() {
                 </DrawerClose>
               </DrawerTitle>
             </DrawerHeader>
-            {preInstallApp && selectedApp && <AppInstall app={selectedApp}/>}
+            {preInstallApp && selectedApp && <AppInstall app={selectedApp} zIndex={modalZIndex + 3}/>}
           </DrawerContent>
         </Drawer>
       </div>

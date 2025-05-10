@@ -1,25 +1,51 @@
 {
   "app": {
     "all": "전체",
-    "detail": "",
+    "detail": "앱 상세",
     "error": "오류",
-    "install": "",
+    "install": "설치",
     "installed": "설치됨",
-    "installing": "설치",
-    "loading": "로딩",
-    "noApps": "미설치",
-    "no_document": "",
+    "installing": "설치 중",
+    "loading": "로딩 중",
+    "noApps": "앱 없음",
+    "no_document": "문서 없음",
+    "no_log": "로그 없음",
     "not_installed": "미설치",
     "page": "페이지",
-    "search": "검색",
+    "search": "앱 검색",
     "totalItems": "총 {{count}}개",
-    "uninstall": "",
-    "uninstalling": "설치"
+    "uninstall": "제거",
+    "uninstalling": "제거 중"
   },
   "common": {
-    "document": "",
-    "open_community": "",
+    "document": "문서",
+    "open_community": "오픈 커뮤니티",
     "title": "앱 스토어",
-    "website": ""
+    "website": "공식 웹사이트"
+  },
+  "label": {
+    "detail": "상세",
+    "log": "로그"
+  },
+  "install": {
+    "basic_info": "기본 정보",
+    "app_config": "앱 설정",
+    "resource_limit": "리소스 제한",
+    "name": "이름",
+    "version": "버전",
+    "select_version": "버전 선택",
+    "latest_version": "최신 버전",
+    "cpu_limit": "CPU 제한 (코어)",
+    "cpu_limit_placeholder": "0으로 설정하면 제한 해제",
+    "memory_limit": "메모리 제한 (MB/GB)",
+    "memory_limit_placeholder": "예: 512MB, 1GB, 0으로 설정하면 제한 해제",
+    "install_app": "앱 설치",
+    "errors": {
+      "version_required": "버전을 선택하세요",
+      "cpu_required": "CPU 제한을 입력하세요",
+      "cpu_invalid": "CPU 제한은 0 이상이어야 합니다",
+      "memory_required": "메모리 제한을 입력하세요",
+      "memory_invalid": "메모리 제한 형식이 올바르지 않습니다. 정수 또는 단위(MB/GB)를 입력하세요"
+    }
   }
 }

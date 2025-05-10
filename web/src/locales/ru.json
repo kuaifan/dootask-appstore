@@ -1,25 +1,51 @@
 {
   "app": {
     "all": "Все",
-    "detail": "",
+    "detail": "Детали приложения",
     "error": "Ошибка",
-    "install": "",
+    "install": "Установить",
     "installed": "Установлено",
     "installing": "Установка",
     "loading": "Загрузка",
     "noApps": "Нет приложений",
-    "no_document": "",
+    "no_document": "Нет документации",
+    "no_log": "Нет логов",
     "not_installed": "Не установлено",
     "page": "Страница",
-    "search": "Поиск",
+    "search": "Поиск приложений",
     "totalItems": "Всего {{count}} элементов",
-    "uninstall": "",
+    "uninstall": "Удалить",
     "uninstalling": "Удаление"
   },
   "common": {
-    "document": "",
-    "open_community": "",
+    "document": "Документация",
+    "open_community": "Открытое сообщество",
     "title": "Магазин приложений",
-    "website": ""
+    "website": "Официальный сайт"
+  },
+  "label": {
+    "detail": "Детали",
+    "log": "Логи"
+  },
+  "install": {
+    "basic_info": "Основная информация",
+    "app_config": "Конфигурация приложения",
+    "resource_limit": "Ограничения ресурсов",
+    "name": "Название",
+    "version": "Версия",
+    "select_version": "Выбрать версию",
+    "latest_version": "Последняя версия",
+    "cpu_limit": "Ограничение CPU (ядра)",
+    "cpu_limit_placeholder": "Установите 0 для отключения ограничения",
+    "memory_limit": "Ограничение памяти (MB/GB)",
+    "memory_limit_placeholder": "Пример: 512MB, 1GB, установите 0 для отключения ограничения",
+    "install_app": "Установить приложение",
+    "errors": {
+      "version_required": "Пожалуйста, выберите версию",
+      "cpu_required": "Пожалуйста, введите ограничение CPU",
+      "cpu_invalid": "Ограничение CPU должно быть больше или равно 0",
+      "memory_required": "Пожалуйста, введите ограничение памяти",
+      "memory_invalid": "Неверный формат памяти, введите целое число или с единицей измерения (MB/GB)"
+    }
   }
 }

@@ -1,25 +1,51 @@
 {
   "app": {
     "all": "Semua",
-    "detail": "",
-    "error": "Kesalahan",
-    "install": "",
+    "detail": "Detail Aplikasi",
+    "error": "Error",
+    "install": "Instal",
     "installed": "Terinstal",
     "installing": "Menginstal",
     "loading": "Memuat",
     "noApps": "Tidak ada aplikasi",
-    "no_document": "",
-    "not_installed": "Belum Terinstal",
+    "no_document": "Tidak ada dokumentasi",
+    "no_log": "Tidak ada log",
+    "not_installed": "Belum terinstal",
     "page": "Halaman",
-    "search": "Cari",
+    "search": "Cari aplikasi",
     "totalItems": "Total {{count}} item",
-    "uninstall": "",
-    "uninstalling": "Menghapus"
+    "uninstall": "Hapus Instalasi",
+    "uninstalling": "Menghapus Instalasi"
   },
   "common": {
-    "document": "",
-    "open_community": "",
+    "document": "Dokumentasi",
+    "open_community": "Komunitas Terbuka",
     "title": "Toko Aplikasi",
-    "website": ""
+    "website": "Situs Resmi"
+  },
+  "label": {
+    "detail": "Detail",
+    "log": "Log"
+  },
+  "install": {
+    "basic_info": "Informasi Dasar",
+    "app_config": "Konfigurasi Aplikasi",
+    "resource_limit": "Batasan Sumber Daya",
+    "name": "Nama",
+    "version": "Versi",
+    "select_version": "Pilih Versi",
+    "latest_version": "Versi Terbaru",
+    "cpu_limit": "Batasan CPU (inti)",
+    "cpu_limit_placeholder": "Atur 0 untuk menonaktifkan batasan",
+    "memory_limit": "Batasan Memori (MB/GB)",
+    "memory_limit_placeholder": "Contoh: 512MB, 1GB, atur 0 untuk menonaktifkan batasan",
+    "install_app": "Instal Aplikasi",
+    "errors": {
+      "version_required": "Silakan pilih versi",
+      "cpu_required": "Silakan masukkan batasan CPU",
+      "cpu_invalid": "Batasan CPU harus lebih besar atau sama dengan 0",
+      "memory_required": "Silakan masukkan batasan memori",
+      "memory_invalid": "Format memori tidak valid, masukkan angka bulat atau dengan satuan (MB/GB)"
+    }
   }
 }

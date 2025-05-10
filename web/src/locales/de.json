@@ -1,25 +1,51 @@
 {
   "app": {
     "all": "Alle",
-    "detail": "",
+    "detail": "App-Details",
     "error": "Fehler",
-    "install": "",
+    "install": "Installieren",
     "installed": "Installiert",
-    "installing": "Wird installiert",
-    "loading": "Ladevorgang",
-    "noApps": "Keine Apps verf gbar",
-    "no_document": "",
+    "installing": "Installation läuft",
+    "loading": "Lädt",
+    "noApps": "Keine Apps",
+    "no_document": "Keine Dokumentation",
+    "no_log": "Keine Logs",
     "not_installed": "Nicht installiert",
     "page": "Seite",
-    "search": "Suche",
-    "totalItems": "Insgesamt {{count}} Eintr ge",
-    "uninstall": "",
-    "uninstalling": "Wird deinstalliert"
+    "search": "Apps suchen",
+    "totalItems": "Insgesamt {{count}} Einträge",
+    "uninstall": "Deinstallieren",
+    "uninstalling": "Deinstallation läuft"
   },
   "common": {
-    "document": "",
-    "open_community": "",
+    "document": "Dokumentation",
+    "open_community": "Open-Source-Community",
     "title": "App Store",
-    "website": ""
+    "website": "Offizielle Website"
+  },
+  "label": {
+    "detail": "Details",
+    "log": "Logs"
+  },
+  "install": {
+    "basic_info": "Grundinformationen",
+    "app_config": "App-Konfiguration",
+    "resource_limit": "Ressourcenlimits",
+    "name": "Name",
+    "version": "Version",
+    "select_version": "Version auswählen",
+    "latest_version": "Neueste Version",
+    "cpu_limit": "CPU-Limit (Kerne)",
+    "cpu_limit_placeholder": "Auf 0 setzen, um Limit zu deaktivieren",
+    "memory_limit": "Speicherlimit (MB/GB)",
+    "memory_limit_placeholder": "Beispiel: 512MB, 1GB, auf 0 setzen, um Limit zu deaktivieren",
+    "install_app": "App installieren",
+    "errors": {
+      "version_required": "Bitte Version auswählen",
+      "cpu_required": "Bitte CPU-Limit eingeben",
+      "cpu_invalid": "CPU-Limit muss größer oder gleich 0 sein",
+      "memory_required": "Bitte Speicherlimit eingeben",
+      "memory_invalid": "Ungültiges Speicherformat, bitte Ganzzahl oder mit Einheit (MB/GB) eingeben"
+    }
   }
 }

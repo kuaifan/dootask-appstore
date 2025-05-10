@@ -1,25 +1,51 @@
 {
   "app": {
     "all": "全部",
-    "detail": "应用详情",
+    "detail": "應用詳情",
     "error": "錯誤",
-    "install": "",
+    "install": "安裝",
     "installed": "已安裝",
     "installing": "安裝中",
-    "loading": "加載中",
+    "loading": "載入中",
     "noApps": "暫無應用",
-    "no_document": "",
+    "no_document": "沒有相關文檔",
+    "no_log": "沒有相關日誌",
     "not_installed": "未安裝",
-    "page": "頁面",
-    "search": "搜尋",
+    "page": "頁",
+    "search": "搜索應用",
     "totalItems": "共{{count}}條",
-    "uninstall": "",
+    "uninstall": "卸載",
     "uninstalling": "卸載中"
   },
   "common": {
-    "document": "",
-    "open_community": "",
+    "document": "文檔說明",
+    "open_community": "開源社區",
     "title": "應用商店",
-    "website": ""
+    "website": "官方網站"
+  },
+  "label": {
+    "detail": "詳情",
+    "log": "日誌"
+  },
+  "install": {
+    "basic_info": "基本信息",
+    "app_config": "應用配置",
+    "resource_limit": "資源限制",
+    "name": "名稱",
+    "version": "版本",
+    "select_version": "選擇版本",
+    "latest_version": "最新版本",
+    "cpu_limit": "CPU限制（核心數）",
+    "cpu_limit_placeholder": "限制為 0 則關閉限制",
+    "memory_limit": "內存限制（MB/GB）",
+    "memory_limit_placeholder": "示例：512MB、1GB，限制為 0 則關閉限制",
+    "install_app": "安裝應用",
+    "errors": {
+      "version_required": "請選擇版本",
+      "cpu_required": "請輸入CPU限制",
+      "cpu_invalid": "CPU限制必須大於等於0",
+      "memory_required": "請輸入內存限制",
+      "memory_invalid": "內存限制格式不正確，請輸入整數或帶單位（MB/GB）"
+    }
   }
 }

@@ -9,6 +9,7 @@
     "loading": "加载中",
     "noApps": "暂无应用",
     "no_document": "没有相关文档",
+    "no_log": "没有相关日志",
     "not_installed": "未安装",
     "page": "页",
     "search": "搜索应用",
@@ -21,5 +22,30 @@
     "open_community": "开源社区",
     "title": "应用商店",
     "website": "官方网站"
+  },
+  "label": {
+    "detail": "详情",
+    "log": "日志"
+  },
+  "install": {
+    "basic_info": "基本信息",
+    "app_config": "应用配置",
+    "resource_limit": "资源限制",
+    "name": "名称",
+    "version": "版本",
+    "select_version": "选择版本",
+    "latest_version": "最新版本",
+    "cpu_limit": "CPU限制（核心数）",
+    "cpu_limit_placeholder": "限制为 0 则关闭限制",
+    "memory_limit": "内存限制（MB/GB）",
+    "memory_limit_placeholder": "示例：512MB、1GB，限制为 0 则关闭限制",
+    "install_app": "安装应用",
+    "errors": {
+      "version_required": "请选择版本",
+      "cpu_required": "请输入CPU限制",
+      "cpu_invalid": "CPU限制必须大于等于0",
+      "memory_required": "请输入内存限制",
+      "memory_invalid": "内存限制格式不正确，请输入整数或带单位（MB/GB）"
+    }
   }
 }

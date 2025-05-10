@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { ScrollArea } from "./ui/scroll-area"
+import { useTranslation } from "react-i18next"
 
 interface AppInstallProps {
     app: AppItem
@@ -14,29 +15,28 @@ interface AppInstallProps {
 }
 
 export function AppInstall({ app, zIndex }: AppInstallProps) {
+    const {t} = useTranslation()
+    
     const formSchema = z.object({
         name: z.string(),
-        version: z.string().min(1, { message: "请选择版本" }),
+        version: z.string().min(1, { message: t('install.errors.version_required') }),
         cpuLimit: z.string()
-            .min(1, { message: "请输入CPU限制" })
+            .min(1, { message: t('install.errors.cpu_required') })
             .refine((val) => !isNaN(Number(val)) && Number(val) >= 0, {
-                message: "CPU限制必须大于等于0"
+                message: t('install.errors.cpu_invalid')
             }),
         memoryLimit: z.string()
-            .min(1, { message: "请输入内存限制" })
+            .min(1, { message: t('install.errors.memory_required') })
             .refine((val) => {
-                // 转换为小写并移除空格
                 const normalized = val.toLowerCase().trim()
-                // 检查是否为纯数字
                 if (/^\d+$/.test(normalized)) return true
-                // 检查是否以 m/mb/g/gb 结尾
                 return /^\d+(m|mb|g|gb)$/.test(normalized)
             }, {
-                message: "内存限制格式不正确，请输入整数或带单位（MB/GB）"
+                message: t('install.errors.memory_invalid')
             }),
         ...app.info.fields.reduce((acc, field) => ({
             ...acc,
-            [field.name]: z.string().min(1, { message: `请输入${field.label}` }),
+            [field.name]: z.string().min(1, { message: t('install.errors.field_required', { field: field.label }) }),
         }), {}),
     })
 
@@ -81,14 +81,14 @@ export function AppInstall({ app, zIndex }: AppInstallProps) {
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6 p-6">
                     <div className="flex flex-col gap-5">
-                        <h3 className="text-lg font-medium text-foreground/90">基本信息</h3>
+                        <h3 className="text-lg font-medium text-foreground/90">{t('install.basic_info')}</h3>
                         <div className="flex flex-col gap-5">
                             <FormField
                                 control={form.control}
                                 name="name"
                                 render={({ field }) => (
                                     <FormItem className="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:items-start">
-                                        <FormLabel className="sm:text-right min-h-9">名称</FormLabel>
+                                        <FormLabel className="sm:text-right min-h-9">{t('install.name')}</FormLabel>
                                         <div className="sm:col-span-3">
                                             <FormControl>
                                                 <Input {...field} disabled className="bg-muted" />
@@ -103,16 +103,16 @@ export function AppInstall({ app, zIndex }: AppInstallProps) {
                                 name="version"
                                 render={({ field }) => (
                                     <FormItem className="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:items-start">
-                                        <FormLabel className="sm:text-right min-h-9">版本</FormLabel>
+                                        <FormLabel className="sm:text-right min-h-9">{t('install.version')}</FormLabel>
                                         <div className="sm:col-span-3">
                                             <Select onValueChange={field.onChange} defaultValue="latest">
                                                 <FormControl>
                                                     <SelectTrigger className="w-full">
-                                                        <SelectValue placeholder="选择版本" />
+                                                        <SelectValue placeholder={t('install.select_version')} />
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent style={{ zIndex: zIndex + 1 }}>
-                                                    <SelectItem value="latest">最新版本</SelectItem>
+                                                    <SelectItem value="latest">{t('install.latest_version')}</SelectItem>
                                                     {app.versions.map((version) => (
                                                         <SelectItem key={version.version} value={version.version}>
                                                             {version.version}
@@ -130,7 +130,7 @@ export function AppInstall({ app, zIndex }: AppInstallProps) {
 
                     {app.info.fields.length > 0 && (
                         <div className="flex flex-col gap-5">
-                            <h3 className="text-lg font-medium text-foreground/90">应用配置</h3>
+                            <h3 className="text-lg font-medium text-foreground/90">{t('install.app_config')}</h3>
                             <div className="flex flex-col gap-5">
                                 {app.info.fields.map((field) => (
                                     <FormField
@@ -160,17 +160,17 @@ export function AppInstall({ app, zIndex }: AppInstallProps) {
                     )}
 
                     <div className="flex flex-col gap-5">
-                        <h3 className="text-lg font-medium text-foreground/90">资源限制</h3>
+                        <h3 className="text-lg font-medium text-foreground/90">{t('install.resource_limit')}</h3>
                         <div className="flex flex-col gap-5">
                             <FormField
                                 control={form.control}
                                 name="cpuLimit"
                                 render={({ field }) => (
                                     <FormItem className="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:items-start">
-                                        <FormLabel className="sm:text-right min-h-9">CPU限制（核心数）</FormLabel>
+                                        <FormLabel className="sm:text-right min-h-9">{t('install.cpu_limit')}</FormLabel>
                                         <div className="sm:col-span-3">
                                             <FormControl>
-                                                <Input {...field} placeholder="限制为 0 则关闭限制" />
+                                                <Input {...field} placeholder={t('install.cpu_limit_placeholder')} />
                                             </FormControl>
                                             <FormMessage />
                                         </div>
@@ -182,22 +182,19 @@ export function AppInstall({ app, zIndex }: AppInstallProps) {
                                 name="memoryLimit"
                                 render={({ field }) => (
                                     <FormItem className="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:items-start">
-                                        <FormLabel className="sm:text-right min-h-9">内存限制（MB/GB）</FormLabel>
+                                        <FormLabel className="sm:text-right min-h-9">{t('install.memory_limit')}</FormLabel>
                                         <div className="sm:col-span-3">
                                             <FormControl>
                                                 <Input
                                                     {...field}
-                                                    placeholder="示例：512MB、1GB，限制为 0 则关闭限制"
+                                                    placeholder={t('install.memory_limit_placeholder')}
                                                     onBlur={(e) => {
                                                         const value = e.target.value.toLowerCase().trim()
-                                                        // 如果是0，保持原样
                                                         if (value === '0') return
                                                         
-                                                        // 提取数字部分
                                                         const num = parseInt(value)
                                                         if (isNaN(num)) return
                                                         
-                                                        // 根据数值大小自动添加单位
                                                         if (num > 0 && num <= 32) {
                                                             field.onChange(`${num}GB`)
                                                         } else if (num > 32) {
@@ -215,7 +212,7 @@ export function AppInstall({ app, zIndex }: AppInstallProps) {
                     </div>
 
                     <div className="flex justify-end pt-4">
-                        <Button type="submit" className="w-full sm:w-auto">安装应用</Button>
+                        <Button type="submit" className="w-full sm:w-auto">{t('install.install_app')}</Button>
                     </div>
                 </form>
             </Form>

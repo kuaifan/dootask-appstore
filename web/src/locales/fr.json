@@ -1,25 +1,51 @@
 {
   "app": {
-    "all": "Tous",
-    "detail": "",
+    "all": "Tout",
+    "detail": "Détails de l'application",
     "error": "Erreur",
-    "install": "",
-    "installed": "Install ",
+    "install": "Installer",
+    "installed": "Installé",
     "installing": "Installation en cours",
-    "loading": "Chargement en cours",
-    "noApps": "Pas d'applications",
-    "no_document": "",
-    "not_installed": "Non install ",
+    "loading": "Chargement",
+    "noApps": "Aucune application",
+    "no_document": "Pas de documentation",
+    "no_log": "Pas de logs",
+    "not_installed": "Non installé",
     "page": "Page",
-    "search": "Recherche",
-    "totalItems": "Total {{count}}  l ments",
-    "uninstall": "",
-    "uninstalling": "D sinstallation en cours"
+    "search": "Rechercher des applications",
+    "totalItems": "Total {{count}} éléments",
+    "uninstall": "Désinstaller",
+    "uninstalling": "Désinstallation en cours"
   },
   "common": {
-    "document": "",
-    "open_community": "",
-    "title": "App Store",
-    "website": ""
+    "document": "Documentation",
+    "open_community": "Communauté open source",
+    "title": "Boutique d'applications",
+    "website": "Site officiel"
+  },
+  "label": {
+    "detail": "Détails",
+    "log": "Logs"
+  },
+  "install": {
+    "basic_info": "Informations de base",
+    "app_config": "Configuration de l'application",
+    "resource_limit": "Limites de ressources",
+    "name": "Nom",
+    "version": "Version",
+    "select_version": "Sélectionner la version",
+    "latest_version": "Dernière version",
+    "cpu_limit": "Limite CPU (cœurs)",
+    "cpu_limit_placeholder": "Mettre à 0 pour désactiver la limite",
+    "memory_limit": "Limite mémoire (MB/GB)",
+    "memory_limit_placeholder": "Exemple : 512MB, 1GB, mettre à 0 pour désactiver la limite",
+    "install_app": "Installer l'application",
+    "errors": {
+      "version_required": "Veuillez sélectionner une version",
+      "cpu_required": "Veuillez entrer la limite CPU",
+      "cpu_invalid": "La limite CPU doit être supérieure ou égale à 0",
+      "memory_required": "Veuillez entrer la limite mémoire",
+      "memory_invalid": "Format de mémoire invalide, veuillez entrer un entier ou avec unité (MB/GB)"
+    }
   }
 }
