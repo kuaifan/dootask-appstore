@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     // 设置语言
-    i18n.changeLanguage(props.languageName).then(() => {})
+    i18n.changeLanguage(props.languageName)
     // 获取应用列表数据
     fetchApps();
     // 拦截返回事件
@@ -270,7 +270,7 @@ function App() {
                     </DrawerClose>
                   </DrawerTitle>
                 </DrawerHeader>
-                {preInstallApp && selectedApp && <AppInstall app={selectedApp} zIndex={modalZIndex + 3}/>}
+                {preInstallApp && selectedApp && <AppInstall app={selectedApp} zIndex={modalZIndex + 3} onClose={() => setPreInstallApp(false)}/>}
               </DrawerContent>
             </DrawerPrimitive.NestedRoot>
           </DrawerContent>
