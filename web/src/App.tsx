@@ -203,9 +203,9 @@ function App() {
           </div>
         )}
 
-        <Drawer open={!!selectedApp} direction={"right"} onOpenChange={(open) => !open && setSelectedApp(null)}>
+        <Drawer open={!!selectedApp} direction={"right"}  onOpenChange={(open) => !open && setSelectedApp(null)}>
           <DrawerOverlay style={{ zIndex: modalZIndex }} />
-          <DrawerContent style={{ zIndex: modalZIndex + 1 }} className="rounded-l-xl">
+          <DrawerContent style={{ zIndex: modalZIndex + 1 }} className="rounded-l-xl !w-[700px] !max-w-[90vw]">
             <DrawerHeader>
               <DrawerTitle className="flex items-center justify-between">
                 <div className="text-base">

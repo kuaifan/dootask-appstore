@@ -3,17 +3,23 @@
     "all": "All",
     "detail": "Application Details",
     "error": "Error",
+    "install": "",
     "installed": "Installed",
     "installing": "Installing",
     "loading": "Loading",
     "noApps": "No apps",
+    "no_document": "",
     "not_installed": "Not installed",
     "page": "Page",
     "search": "Search",
     "totalItems": "Total {{count}} items",
+    "uninstall": "",
     "uninstalling": "Uninstalling"
   },
   "common": {
-    "title": "App Store"
+    "document": "",
+    "open_community": "",
+    "title": "App Store",
+    "website": ""
   }
 }

@@ -3,17 +3,23 @@
     "all": "Все",
     "detail": "",
     "error": "Ошибка",
+    "install": "",
     "installed": "Установлено",
     "installing": "Установка",
     "loading": "Загрузка",
     "noApps": "Нет приложений",
+    "no_document": "",
     "not_installed": "Не установлено",
     "page": "Страница",
     "search": "Поиск",
     "totalItems": "Всего {{count}} элементов",
+    "uninstall": "",
     "uninstalling": "Удаление"
   },
   "common": {
-    "title": "Магазин приложений"
+    "document": "",
+    "open_community": "",
+    "title": "Магазин приложений",
+    "website": ""
   }
 }

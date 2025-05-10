@@ -29,7 +29,7 @@ export interface AppLocal {
   installed_at: string;
   installed_num: number;
   installed_version: string;
-  status: string;
+  status: string | 'installing' | 'installed' | 'uninstalling' | 'not_installed' | 'error';
   params: Record<string, string | number>;
   resources: {
     cpu_limit: string;
@@ -50,4 +50,5 @@ export interface AppItem {
   info: AppInfo;
   local: AppLocal;
   versions: AppVersion[];
+  document?: string
 }

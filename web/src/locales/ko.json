@@ -3,17 +3,23 @@
     "all": "전체",
     "detail": "",
     "error": "오류",
+    "install": "",
     "installed": "설치됨",
     "installing": "설치",
     "loading": "로딩",
     "noApps": "미설치",
+    "no_document": "",
     "not_installed": "미설치",
     "page": "페이지",
     "search": "검색",
     "totalItems": "총 {{count}}개",
+    "uninstall": "",
     "uninstalling": "설치"
   },
   "common": {
-    "title": "앱 스토어"
+    "document": "",
+    "open_community": "",
+    "title": "앱 스토어",
+    "website": ""
   }
 }

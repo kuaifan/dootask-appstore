@@ -3,17 +3,23 @@
     "all": "Alle",
     "detail": "",
     "error": "Fehler",
+    "install": "",
     "installed": "Installiert",
     "installing": "Wird installiert",
     "loading": "Ladevorgang",
     "noApps": "Keine Apps verf gbar",
+    "no_document": "",
     "not_installed": "Nicht installiert",
     "page": "Seite",
     "search": "Suche",
     "totalItems": "Insgesamt {{count}} Eintr ge",
+    "uninstall": "",
     "uninstalling": "Wird deinstalliert"
   },
   "common": {
-    "title": "App Store"
+    "document": "",
+    "open_community": "",
+    "title": "App Store",
+    "website": ""
   }
 }

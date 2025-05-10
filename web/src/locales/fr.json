@@ -3,17 +3,23 @@
     "all": "Tous",
     "detail": "",
     "error": "Erreur",
+    "install": "",
     "installed": "Install ",
     "installing": "Installation en cours",
     "loading": "Chargement en cours",
     "noApps": "Pas d'applications",
+    "no_document": "",
     "not_installed": "Non install ",
     "page": "Page",
     "search": "Recherche",
     "totalItems": "Total {{count}}  l ments",
+    "uninstall": "",
     "uninstalling": "D sinstallation en cours"
   },
   "common": {
-    "title": "App Store"
+    "document": "",
+    "open_community": "",
+    "title": "App Store",
+    "website": ""
   }
 }
