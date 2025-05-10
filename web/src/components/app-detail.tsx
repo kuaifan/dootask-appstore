@@ -13,9 +13,11 @@ import {AppLog} from "@/components/app-log.tsx";
 
 interface AppDetailProps {
   app: AppItem
+  onInstall: () => void
+  onUninstall: () => void
 }
 
-export function AppDetail({app}: AppDetailProps) {
+export function AppDetail({app, onInstall, onUninstall}: AppDetailProps) {
   const {t} = useTranslation()
   const [loading, setLoading] = useState(true)
   const [appDetail, setAppDetail] = useState<AppItem>(app)
@@ -50,9 +52,9 @@ export function AppDetail({app}: AppDetailProps) {
         </div>
         <div className="flex flex-col items-end gap-3 min-w-[120px]">
           {appDetail.local.status === 'installed' ? (
-            <Button className="bg-red-100 text-red-700 hover:bg-red-200 rounded-lg px-6 py-2 font-semibold cursor-pointer">{t('app.uninstall')}</Button>
+            <Button className="bg-red-100 text-red-700 hover:bg-red-200 rounded-lg px-6 py-2 font-semibold cursor-pointer" onClick={onUninstall}>{t('app.uninstall')}</Button>
           ) : (
-            <Button className="bg-yellow-100 text-yellow-700 hover:bg-yellow-200 rounded-lg px-6 py-2 font-semibold cursor-pointer">{t('app.install')}</Button>
+            <Button className="bg-yellow-100 text-yellow-700 hover:bg-yellow-200 rounded-lg px-6 py-2 font-semibold cursor-pointer" onClick={onInstall}>{t('app.install')}</Button>
           )}
           <div className="flex flex-wrap justify-end gap-2 mt-2">
             {appDetail.info.website && (

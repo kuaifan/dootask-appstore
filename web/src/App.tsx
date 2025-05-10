@@ -1,4 +1,5 @@
-import {useEffect, useRef, useState} from 'react'
+import i18n from "@/i18n";
+import {useEffect, useState} from 'react'
 import {Button} from './components/ui/button'
 import {Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle} from "./components/ui/drawer"
 import {useTranslation} from "react-i18next";
@@ -8,16 +9,16 @@ import {AppSearch} from './components/app-search';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from './components/ui/tabs';
 import {AppCard} from './components/app-card';
 import type {AppItem} from "@/types/app.ts";
-import i18n from "@/i18n";
 import { AppDetail } from "./components/app-detail"
 import { appMockData } from "./mock/app.ts";
 import {beforeClose} from "@/lib/utils.ts";
+import { AppInstall } from './components/app-install.tsx';
 
 function App() {
   const {t} = useTranslation();
-  const mainRef = useRef(null);
   const [apps, setApps] = useState<AppItem[]>([]);
   const [selectedApp, setSelectedApp] = useState<AppItem | null>(null)
+  const [preInstallApp, setPreInstallApp] = useState(false)
   const [modalZIndex , setModalZIndex] = useState(1000);
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState('all');
@@ -117,13 +118,24 @@ function App() {
     fetchApps();
   };
 
+  // 打开应用详情
   const handleOpenApp = (app: AppItem) => {
     setModalZIndex(nextZIndex());
     setSelectedApp(app);
   }
 
+  // 安装应用
+  const handleInstall = () => {
+    setPreInstallApp(true)
+  }
+
+  // 卸载应用
+  const handleUninstall = () => {
+    console.log('uninstall')
+  }
+
   return (
-    <main ref={mainRef} className="min-h-screen p-4 md:p-6">
+    <main className="min-h-screen p-4 md:p-6">
       <div className="container mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-3 md:mb-6">
           <div className="flex items-center">
@@ -213,9 +225,9 @@ function App() {
           </div>
         )}
 
+        {/* 应用详情 */}
         <Drawer
           modal={false}
-          container={mainRef.current}
           open={!!selectedApp}
           direction={"right"}
           onOpenChange={(open) => !open && setSelectedApp(null)}>
@@ -233,7 +245,32 @@ function App() {
                 </DrawerClose>
               </DrawerTitle>
             </DrawerHeader>
-            {selectedApp && <AppDetail app={selectedApp} />}
+            {selectedApp && <AppDetail app={selectedApp} onInstall={handleInstall} onUninstall={handleUninstall}/>}
+          </DrawerContent>
+        </Drawer>
+
+        {/* 安装应用 */}
+        <Drawer
+          modal={false}
+          open={preInstallApp && !!selectedApp}
+          direction={"right"}
+          dismissible={false}
+          onOpenChange={setPreInstallApp}>
+          {preInstallApp && (
+            <div className="fixed top-0 right-0 left-0 bottom-0 bg-black/40 animate-fade-in pointer-events-auto" style={{ zIndex: modalZIndex + 2 }}></div>
+          )}
+          <DrawerContent style={{ zIndex: modalZIndex + 3 }} className="rounded-l-xl !w-[900px] !max-w-[80vw]">
+            <DrawerHeader>
+              <DrawerTitle className="flex items-center justify-between">
+                <div className="text-base">
+                  {t('app.install')}
+                </div>
+                <DrawerClose role="app-store-close" className="cursor-pointer" onClick={() => setPreInstallApp(false)}>
+                  <X size={20}/>
+                </DrawerClose>
+              </DrawerTitle>
+            </DrawerHeader>
+            {preInstallApp && selectedApp && <AppInstall app={selectedApp}/>}
           </DrawerContent>
         </Drawer>
       </div>
