@@ -1,7 +1,7 @@
 import type {AppItem} from "@/types/app"
 import {Button} from "@/components/ui/button"
 import {ScrollArea} from "@/components/ui/scroll-area.tsx";
-import {ExternalLink} from "lucide-react"
+import {ExternalLink, LoaderCircle, RefreshCw} from "lucide-react"
 import {useTranslation} from "react-i18next";
 import {requestAPI} from "@dootask/tools";
 import {useEffect, useState} from "react";
@@ -21,6 +21,8 @@ export function AppDetail({app, onInstall, onUninstall}: AppDetailProps) {
   const {t} = useTranslation()
   const [loading, setLoading] = useState(true)
   const [appDetail, setAppDetail] = useState<AppItem>(app)
+  const [activeTab, setActiveTab] = useState("detail")
+  const [isRefreshing, setIsRefreshing] = useState(false)
 
   useEffect(() => {
     requestAPI({
@@ -80,11 +82,18 @@ export function AppDetail({app, onInstall, onUninstall}: AppDetailProps) {
       <div className="border-b border-gray-200 mb-3"/>
 
       {/* 详情、日志 */}
-      <Tabs defaultValue="detail" className="flex-1 flex flex-col h-0">
-        <TabsList className="mb-4">
-          <TabsTrigger className="px-4" value="detail">{t('label.detail')}</TabsTrigger>
-          <TabsTrigger className="px-4" value="log">{t('label.log')}</TabsTrigger>
-        </TabsList>
+      <Tabs defaultValue="detail" className="flex-1 flex flex-col h-0" onValueChange={setActiveTab}>
+        <div className="flex items-center mb-4 gap-2">
+          <TabsList>
+            <TabsTrigger className="px-4" value="detail">{t('label.detail')}</TabsTrigger>
+            <TabsTrigger className="px-4" value="log">{t('label.log')}</TabsTrigger>
+          </TabsList>
+          {activeTab === 'log' && (
+            <Button variant="ghost" size="icon" className="rounded-full">
+              {isRefreshing ? <LoaderCircle className="animate-spin" size={16}/> : <RefreshCw size={16}/>}
+            </Button>
+          )}
+        </div>
         <TabsContent value="detail" className="flex-1 h-0">
           {/* 详情内容 */}
           <ScrollArea className="h-full">
@@ -111,7 +120,7 @@ export function AppDetail({app, onInstall, onUninstall}: AppDetailProps) {
         </TabsContent>
         <TabsContent value="log" className="flex-1 h-0">
           {/* 日志内容 */}
-          <AppLog appName={appDetail.name}/>
+          <AppLog appName={appDetail.name} onLoading={setIsRefreshing}/>
         </TabsContent>
       </Tabs>
     </div>

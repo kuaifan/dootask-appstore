@@ -6,29 +6,52 @@ import {ScrollArea} from "./ui/scroll-area";
 
 interface AppLogProps {
   appName: string
+  onLoading: (loading: boolean) => void
 }
 
-export function AppLog({appName}: AppLogProps) {
+export function AppLog({appName, onLoading}: AppLogProps) {
   const {t} = useTranslation()
   const [loading, setLoading] = useState(true)
   const [logDetail, setLogDetail] = useState("")
   const bottomRef = useRef<HTMLDivElement>(null)
+  const isRequestingRef = useRef(false)
+  const timerRef = useRef<NodeJS.Timeout>(null)
 
-  useEffect(() => {
-    requestAPI({
-      url: 'apps/logs',
-      data: {
-        app_name: appName
-      }
-    }).then(({data}) => {
+  const fetchLogs = async () => {
+    if (isRequestingRef.current) return
+
+    try {
+      isRequestingRef.current = true
+      const {data} = await requestAPI({
+        url: 'apps/logs',
+        data: {
+          app_name: appName
+        }
+      })
       if (data) {
         setLogDetail(data.log)
       }
-    }).catch((err) => {
+    } catch (err) {
       console.error(err)
-    }).finally(() => {
+    } finally {
       setLoading(false)
-    })
+      isRequestingRef.current = false
+    }
+  }
+
+  useEffect(() => {
+    // 初始加载
+    fetchLogs()
+
+    // 设置定时器
+    timerRef.current = setInterval(fetchLogs, 5000)
+
+    // 清理函数
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current)
+      }
+    }
   }, [appName]);
 
   useEffect(() => {
@@ -36,6 +59,10 @@ export function AppLog({appName}: AppLogProps) {
       bottomRef.current.scrollIntoView({behavior: "instant"});
     }
   }, [logDetail]);
+
+  useEffect(() => {
+    onLoading(loading)
+  }, [loading]);
 
   return (
     <ScrollArea className="h-full">
