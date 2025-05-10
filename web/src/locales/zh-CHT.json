@@ -1,18 +1,19 @@
 {
-  "common": {
-    "title": "應用商店"
-  },
   "app": {
     "all": "全部",
+    "detail": "应用详情",
+    "error": "錯誤",
     "installed": "已安裝",
     "installing": "安裝中",
-    "uninstalling": "卸載中",
-    "not_installed": "未安裝",
-    "error": "錯誤",
     "loading": "加載中",
     "noApps": "暫無應用",
-    "totalItems": "共{{count}}條",
+    "not_installed": "未安裝",
     "page": "頁面",
-    "search": "搜尋"
+    "search": "搜尋",
+    "totalItems": "共{{count}}條",
+    "uninstalling": "卸載中"
+  },
+  "common": {
+    "title": "應用商店"
   }
 }

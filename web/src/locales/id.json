@@ -1,18 +1,19 @@
 {
-  "common": {
-    "title": "Toko Aplikasi"
-  },
   "app": {
     "all": "Semua",
+    "detail": "",
+    "error": "Kesalahan",
     "installed": "Terinstal",
     "installing": "Menginstal",
-    "uninstalling": "Menghapus",
-    "not_installed": "Belum Terinstal",
-    "error": "Kesalahan",
     "loading": "Memuat",
     "noApps": "Tidak ada aplikasi",
-    "totalItems": "Total {{count}} item",
+    "not_installed": "Belum Terinstal",
     "page": "Halaman",
-    "search": "Cari"
+    "search": "Cari",
+    "totalItems": "Total {{count}} item",
+    "uninstalling": "Menghapus"
+  },
+  "common": {
+    "title": "Toko Aplikasi"
   }
 }

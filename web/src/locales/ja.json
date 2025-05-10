@@ -1,18 +1,19 @@
 {
-  "common": {
-    "title": "アプリストア"
-  },
   "app": {
     "all": "すべて",
+    "detail": "",
+    "error": "エラー",
     "installed": "インストール済み",
     "installing": "インストール",
-    "uninstalling": "インストール",
-    "not_installed": "未インストール",
-    "error": "エラー",
     "loading": "ロード中",
     "noApps": "アプリなし",
-    "totalItems": "合計{{count}}件",
+    "not_installed": "未インストール",
     "page": "ページ",
-    "search": "検索"
+    "search": "検索",
+    "totalItems": "合計{{count}}件",
+    "uninstalling": "インストール"
+  },
+  "common": {
+    "title": "アプリストア"
   }
 }

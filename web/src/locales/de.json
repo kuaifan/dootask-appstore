@@ -1,18 +1,19 @@
 {
-  "common": {
-    "title": "App Store"
-  },
   "app": {
     "all": "Alle",
+    "detail": "",
+    "error": "Fehler",
     "installed": "Installiert",
     "installing": "Wird installiert",
-    "uninstalling": "Wird deinstalliert",
-    "not_installed": "Nicht installiert",
-    "error": "Fehler",
     "loading": "Ladevorgang",
     "noApps": "Keine Apps verf gbar",
-    "totalItems": "Insgesamt {{count}} Eintr ge",
+    "not_installed": "Nicht installiert",
     "page": "Seite",
-    "search": "Suche"
+    "search": "Suche",
+    "totalItems": "Insgesamt {{count}} Eintr ge",
+    "uninstalling": "Wird deinstalliert"
+  },
+  "common": {
+    "title": "App Store"
   }
 }

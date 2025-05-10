@@ -1,18 +1,19 @@
 {
-  "common": {
-    "title": "App Store"
-  },
   "app": {
     "all": "All",
+    "detail": "Application Details",
+    "error": "Error",
     "installed": "Installed",
     "installing": "Installing",
-    "uninstalling": "Uninstalling",
-    "not_installed": "Not installed",
-    "error": "Error",
     "loading": "Loading",
     "noApps": "No apps",
-    "totalItems": "Total {{count}} items",
+    "not_installed": "Not installed",
     "page": "Page",
-    "search": "Search"
+    "search": "Search",
+    "totalItems": "Total {{count}} items",
+    "uninstalling": "Uninstalling"
+  },
+  "common": {
+    "title": "App Store"
   }
 }

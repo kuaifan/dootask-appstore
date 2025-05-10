@@ -1,18 +1,19 @@
 {
-  "common": {
-    "title": "App Store"
-  },
   "app": {
     "all": "Tous",
+    "detail": "",
+    "error": "Erreur",
     "installed": "Install ",
     "installing": "Installation en cours",
-    "uninstalling": "D sinstallation en cours",
-    "not_installed": "Non install ",
-    "error": "Erreur",
     "loading": "Chargement en cours",
     "noApps": "Pas d'applications",
-    "totalItems": "Total {{count}}  l ments",
+    "not_installed": "Non install ",
     "page": "Page",
-    "search": "Recherche"
+    "search": "Recherche",
+    "totalItems": "Total {{count}}  l ments",
+    "uninstalling": "D sinstallation en cours"
+  },
+  "common": {
+    "title": "App Store"
   }
 }

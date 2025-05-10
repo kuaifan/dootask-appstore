@@ -1,23 +1,27 @@
 import {useEffect, useState} from 'react'
 import {Button} from './components/ui/button'
 import {useTranslation} from "react-i18next";
-import {props, requestAPI, backApp} from "@dootask/tools";
-import {ChevronLeft, ChevronRight, LoaderCircle, RefreshCw} from "lucide-react";
+import {props, requestAPI, backApp, nextZIndex} from "@dootask/tools";
+import {X, ChevronLeft, ChevronRight, LoaderCircle, RefreshCw} from "lucide-react";
 import {AppSearch} from './components/app-search';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from './components/ui/tabs';
 import {AppCard} from './components/app-card';
-import type {AppItem} from "@/type/app.ts";
+import type {AppItem} from "@/types/app.ts";
 import i18n from "@/i18n";
+import { AppDetail } from "./components/app-detail"
+import { appMockData } from "./mock/app.ts";
+import {Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerOverlay, DrawerTitle} from "./components/ui/drawer"
 
 function App() {
   const {t} = useTranslation();
   const [apps, setApps] = useState<AppItem[]>([]);
+  const [selectedApp, setSelectedApp] = useState<AppItem | null>(null)
+  const [modalZIndex , setModalZIndex] = useState(1000);
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState('all');
   const [category, setCategory] = useState('all');
   const [availableCategories, setAvailableCategories] = useState<string[]>(['all']);
   const [searchKeyword, setSearchKeyword] = useState('');
-
 
   useEffect(() => {
     // 设置语言
@@ -34,6 +38,8 @@ function App() {
       if (data) {
         setApps(data);
       }
+    }).catch(() => {
+      setApps(appMockData);
     }).finally(() => {
       setLoading(false);
     });
@@ -101,6 +107,11 @@ function App() {
     fetchApps();
   };
 
+  const handleOpenApp = (app: AppItem) => {
+    setModalZIndex(nextZIndex());
+    setSelectedApp(app);
+  }
+
   return (
     <main className="min-h-screen p-4 md:p-6">
       <div className="container mx-auto">
@@ -160,6 +171,7 @@ function App() {
                         description={app.info.description}
                         status={app.local.status}
                         category={app.info.tags?.length ? app.info.tags : []}
+                        onOpen={() => handleOpenApp(app)}
                       />
                     ))}
                   </div>
@@ -190,6 +202,23 @@ function App() {
             </div>
           </div>
         )}
+
+        <Drawer open={!!selectedApp} direction={"right"} onOpenChange={(open) => !open && setSelectedApp(null)}>
+          <DrawerOverlay style={{ zIndex: modalZIndex }} />
+          <DrawerContent style={{ zIndex: modalZIndex + 1 }} className="rounded-l-xl">
+            <DrawerHeader>
+              <DrawerTitle className="flex items-center justify-between">
+                <div className="text-base">
+                  {t('app.detail')}
+                </div>
+                <DrawerClose className="cursor-pointer">
+                  <X size={20}/>
+                </DrawerClose>
+              </DrawerTitle>
+            </DrawerHeader>
+            {selectedApp && <AppDetail app={selectedApp} />}
+          </DrawerContent>
+        </Drawer>
       </div>
     </main>
   )

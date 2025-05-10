@@ -1,18 +1,19 @@
 {
-  "common": {
-    "title": "Магазин приложений"
-  },
   "app": {
     "all": "Все",
+    "detail": "",
+    "error": "Ошибка",
     "installed": "Установлено",
     "installing": "Установка",
-    "uninstalling": "Удаление",
-    "not_installed": "Не установлено",
-    "error": "Ошибка",
     "loading": "Загрузка",
     "noApps": "Нет приложений",
-    "totalItems": "Всего {{count}} элементов",
+    "not_installed": "Не установлено",
     "page": "Страница",
-    "search": "Поиск"
+    "search": "Поиск",
+    "totalItems": "Всего {{count}} элементов",
+    "uninstalling": "Удаление"
+  },
+  "common": {
+    "title": "Магазин приложений"
   }
 }

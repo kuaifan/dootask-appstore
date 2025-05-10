@@ -9,9 +9,10 @@ interface AppCardProps {
   description: string;
   status: string;
   category?: string | string[];
+  onOpen?: () => void;
 }
 
-export function AppCard({icon, title, description, status, category}: AppCardProps) {
+export function AppCard({icon, title, description, status, category, onOpen}: AppCardProps) {
   const {t} = useTranslation();
 
   const statusClass = status === "installed" ?
@@ -19,7 +20,10 @@ export function AppCard({icon, title, description, status, category}: AppCardPro
     "bg-blue-100 text-blue-800 hover:bg-blue-200";
 
   return (
-    <Card className="flex flex-col overflow-hidden border px-2 py-5">
+    <Card 
+      className="flex flex-col overflow-hidden border px-2 py-5 cursor-pointer hover:bg-gray-50 transition-colors" 
+      onClick={onOpen}
+    >
       <CardHeader className="p-4 pb-0">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-start">

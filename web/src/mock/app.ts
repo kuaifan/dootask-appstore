@@ -1,0 +1,137 @@
+import type {AppItem} from "@/types/app.ts";
+
+export const appMockData: AppItem[] = [
+    {
+      "name": "MysqlExposePort",
+      "info": {
+        "name": "MysqlExposePort",
+        "description": "暴露mysql端口",
+        "tags": [],
+        "icon": "http://127.0.0.1:2222/uploads/file/apps/MysqlExposePort/logo.png",
+        "author": "DooTask",
+        "website": "https://www.dootask.com",
+        "github": "",
+        "document": "",
+        "fields": [
+          {
+            "name": "PROXY_PORT",
+            "type": "number",
+            "default": 3306,
+            "label": "代理端口",
+            "placeholder": "代理端口"
+          }
+        ],
+        "require_uninstalls": []
+      },
+      "local": {
+        "installed_at": "2025-05-09 00:56:13",
+        "installed_num": 3,
+        "installed_version": "1.0.0",
+        "status": "installed",
+        "params": {
+          "PROXY_PORT": 33062,
+          "DOOTASK_VERSION": "0.47.7"
+        },
+        "resources": {
+          "cpu_limit": "",
+          "memory_limit": ""
+        }
+      },
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "/var/www/docker/apps/MysqlExposePort/1.0.0",
+          "base_dir": "/var/www/docker/apps/MysqlExposePort",
+          "compose_file": "/var/www/docker/apps/MysqlExposePort/1.0.0/docker-compose.yml"
+        }
+      ]
+    },
+    {
+      "name": "OKR",
+      "info": {
+        "name": "OKR",
+        "description": "一款帮助团队高效设定、跟踪和实现目标与关键结果的工具，让目标管理变得简单透明。",
+        "tags": [],
+        "icon": "http://127.0.0.1:2222/uploads/file/apps/OKR/logo.svg",
+        "author": "DooTask",
+        "website": "https://www.dootask.com",
+        "github": "",
+        "document": "",
+        "fields": [],
+        "require_uninstalls": [
+          {
+            "version": "2.0.0",
+            "operator": "=",
+            "reason": "数据库结构变更"
+          },
+          {
+            "version": "3.0.0",
+            "operator": ">=",
+            "reason": "架构重大改变"
+          }
+        ]
+      },
+      "local": {
+        "installed_at": "2025-05-09 00:52:13",
+        "installed_num": 12,
+        "installed_version": "0.5.0",
+        "status": "installed",
+        "params": {
+          "DOOTASK_VERSION": "0.47.7"
+        },
+        "resources": {
+          "cpu_limit": "",
+          "memory_limit": ""
+        },
+        "uninstalled_at": "2025-05-09 00:51:46"
+      },
+      "versions": [
+        {
+          "version": "0.5.0",
+          "path": "/var/www/docker/apps/OKR/0.5.0",
+          "base_dir": "/var/www/docker/apps/OKR",
+          "compose_file": "/var/www/docker/apps/OKR/0.5.0/docker-compose.yml"
+        }
+      ]
+    },
+    {
+      "name": "appstore",
+      "info": {
+        "name": "应用商店",
+        "description": "官方应用商店",
+        "tags": [
+          "Tool",
+          "Application"
+        ],
+        "icon": "http://127.0.0.1:2222/uploads/file/apps/appstore/logo.svg",
+        "author": "DooTask",
+        "website": "https://www.dootask.com",
+        "github": "",
+        "document": "",
+        "fields": [],
+        "require_uninstalls": []
+      },
+      "local": {
+        "installed_at": "",
+        "installed_num": 0,
+        "installed_version": "",
+        "status": "not_installed",
+        "params": {
+          "DOOTASK_VERSION": "0.47.7"
+        },
+        "resources": {
+          "cpu_limit": "",
+          "memory_limit": ""
+        }
+      },
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "/var/www/docker/apps/appstore/1.0.0",
+          "base_dir": "/var/www/docker/apps/appstore",
+          "compose_file": "/var/www/docker/apps/appstore/1.0.0/docker-compose.yml"
+        }
+      ]
+    }
+  ]
+;
