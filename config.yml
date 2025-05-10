@@ -20,22 +20,11 @@ entry_points:
 
 fields:
   - name: PROXY_PORT
-    label: 
+    label:
       en: Proxy port
       zh: 代理端口
-    placeholder: 
+    placeholder:
       en: Proxy port
       zh: 代理端口
     type: number
     default: 3306
-  - name: INSTALL_TYPE
-    label:
-      en: Install type
-      zh: 安装类型
-    type: select
-    options:
-      - label: Docker
-        value: docker
-      - label: Docker Compose
-        value: docker-compose
-    default: docker

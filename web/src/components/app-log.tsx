@@ -45,7 +45,7 @@ export const AppLog = forwardRef<AppLogRef, AppLogProps>(({appName, onLoading}, 
         setLoading(false)
         onLoading?.(false)
         isRequestingRef.current = false
-      }, isQueue ? 1000 - (Date.now() - now) : 0)
+      }, isQueue ? 500 - (Date.now() - now) : 0)
     }
   }
 
@@ -79,7 +79,7 @@ export const AppLog = forwardRef<AppLogRef, AppLogProps>(({appName, onLoading}, 
   return (
     <ScrollArea className="h-full">
       <div className="select-text">
-        {loading ? (
+        {loading && logDetail == "" ? (
           <div className="flex flex-col gap-3">
             <Skeleton className="h-4 w-[80%]"/>
             <Skeleton className="h-4 w-[70%]"/>

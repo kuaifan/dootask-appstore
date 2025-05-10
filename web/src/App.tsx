@@ -1,4 +1,5 @@
 import i18n from "@/i18n";
+import {Drawer as DrawerPrimitive} from "vaul"
 import {useEffect, useState} from 'react'
 import {Button} from './components/ui/button'
 import {Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle} from "./components/ui/drawer"
@@ -9,17 +10,17 @@ import {AppSearch} from './components/app-search';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from './components/ui/tabs';
 import {AppCard} from './components/app-card';
 import type {AppItem} from "@/types/app.ts";
-import { AppDetail } from "./components/app-detail"
-import { appMockData } from "./mock/app.ts";
+import {AppDetail} from "./components/app-detail"
+import {appMockData} from "./mock/app.ts";
 import {beforeClose} from "@/lib/utils.ts";
-import { AppInstall } from './components/app-install.tsx';
+import {AppInstall} from './components/app-install.tsx';
 
 function App() {
   const {t} = useTranslation();
   const [apps, setApps] = useState<AppItem[]>([]);
   const [selectedApp, setSelectedApp] = useState<AppItem | null>(null)
   const [preInstallApp, setPreInstallApp] = useState(false)
-  const [modalZIndex , setModalZIndex] = useState(1000);
+  const [modalZIndex, setModalZIndex] = useState(1000);
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState('all');
   const [category, setCategory] = useState('all');
@@ -225,52 +226,53 @@ function App() {
           </div>
         )}
 
-        {/* 应用详情 */}
+        {/* 应用详情、安装应用 */}
         <Drawer
           modal={false}
+          dismissible={false}
           open={!!selectedApp}
           direction={"right"}
           onOpenChange={(open) => !open && setSelectedApp(null)}>
           {selectedApp && (
-            <div className="fixed top-0 right-0 left-0 bottom-0 bg-black/40 animate-fade-in pointer-events-auto" style={{ zIndex: modalZIndex }} onClick={() => setSelectedApp(null)}></div>
+            <div className="fixed top-0 right-0 left-0 bottom-0 bg-black/40 animate-fade-in pointer-events-auto" style={{zIndex: modalZIndex}} onClick={() => setSelectedApp(null)}></div>
           )}
-          <DrawerContent style={{ zIndex: modalZIndex + 1 }} className="rounded-l-xl !w-[1000px] !max-w-[90vw]">
+          {preInstallApp && (
+            <div className="fixed top-0 right-0 left-0 bottom-0 bg-black/40 animate-fade-in pointer-events-auto" style={{zIndex: modalZIndex + 2}}></div>
+          )}
+          <DrawerContent style={{zIndex: modalZIndex + 1}} className="rounded-l-xl !w-[1000px] !max-w-[90vw]">
             <DrawerHeader>
               <DrawerTitle className="flex items-center justify-between">
                 <div className="text-base">
                   {t('app.detail')}
                 </div>
-                <DrawerClose role="app-store-close" className="cursor-pointer">
+                <DrawerClose role="app-store-close" className="cursor-pointer" onClick={() => setSelectedApp(null)}>
                   <X size={20}/>
                 </DrawerClose>
               </DrawerTitle>
             </DrawerHeader>
+            {/* 应用详情 */}
             {selectedApp && <AppDetail app={selectedApp} onInstall={handleInstall} onUninstall={handleUninstall}/>}
-          </DrawerContent>
-        </Drawer>
-
-        {/* 安装应用 */}
-        <Drawer
-          modal={false}
-          open={preInstallApp && !!selectedApp}
-          direction={"right"}
-          dismissible={false}
-          onOpenChange={setPreInstallApp}>
-          {preInstallApp && (
-            <div className="fixed top-0 right-0 left-0 bottom-0 bg-black/40 animate-fade-in pointer-events-auto" style={{ zIndex: modalZIndex + 2 }}></div>
-          )}
-          <DrawerContent style={{ zIndex: modalZIndex + 3 }} className="rounded-l-xl !w-[600px] !max-w-[80vw]">
-            <DrawerHeader>
-              <DrawerTitle className="flex items-center justify-between">
-                <div className="text-base">
-                  {t('app.install')}
-                </div>
-                <DrawerClose role="app-store-close" className="cursor-pointer" onClick={() => setPreInstallApp(false)}>
-                  <X size={20}/>
-                </DrawerClose>
-              </DrawerTitle>
-            </DrawerHeader>
-            {preInstallApp && selectedApp && <AppInstall app={selectedApp} zIndex={modalZIndex + 3}/>}
+            {/* 安装应用 */}
+            <DrawerPrimitive.NestedRoot
+              modal={false}
+              dismissible={false}
+              open={preInstallApp && !!selectedApp}
+              direction={"right"}
+              onOpenChange={setPreInstallApp}>
+              <DrawerContent style={{zIndex: modalZIndex + 3}} className="rounded-l-xl !w-[600px] !max-w-[80vw]">
+                <DrawerHeader>
+                  <DrawerTitle className="flex items-center justify-between">
+                    <div className="text-base">
+                      {t('app.install')}
+                    </div>
+                    <DrawerClose role="app-store-close" className="cursor-pointer" onClick={() => setPreInstallApp(false)}>
+                      <X size={20}/>
+                    </DrawerClose>
+                  </DrawerTitle>
+                </DrawerHeader>
+                {preInstallApp && selectedApp && <AppInstall app={selectedApp} zIndex={modalZIndex + 3}/>}
+              </DrawerContent>
+            </DrawerPrimitive.NestedRoot>
           </DrawerContent>
         </Drawer>
       </div>
