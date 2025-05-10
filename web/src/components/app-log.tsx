@@ -1,15 +1,19 @@
 import {requestAPI} from "@dootask/tools";
-import {useEffect, useState, useRef} from "react";
+import {useEffect, useState, useRef, forwardRef, useImperativeHandle} from "react";
 import {Skeleton} from "./ui/skeleton";
 import {useTranslation} from "react-i18next";
 import {ScrollArea} from "./ui/scroll-area";
 
 interface AppLogProps {
   appName: string
-  onLoading: (loading: boolean) => void
+  onLoading?: (loading: boolean) => void
 }
 
-export function AppLog({appName, onLoading}: AppLogProps) {
+export interface AppLogRef {
+  fetchLogs: () => Promise<void>
+}
+
+export const AppLog = forwardRef<AppLogRef, AppLogProps>(({appName, onLoading}, ref) => {
   const {t} = useTranslation()
   const [loading, setLoading] = useState(true)
   const [logDetail, setLogDetail] = useState("")
@@ -20,8 +24,11 @@ export function AppLog({appName, onLoading}: AppLogProps) {
   const fetchLogs = async () => {
     if (isRequestingRef.current) return
 
+    const now = Date.now()
     try {
       isRequestingRef.current = true
+      setLoading(true)
+      onLoading?.(true)
       const {data} = await requestAPI({
         url: 'apps/logs',
         data: {
@@ -34,17 +41,24 @@ export function AppLog({appName, onLoading}: AppLogProps) {
     } catch (err) {
       console.error(err)
     } finally {
-      setLoading(false)
-      isRequestingRef.current = false
+      setTimeout(() => {
+        setLoading(false)
+        onLoading?.(false)
+        isRequestingRef.current = false
+      }, 1000 - (Date.now() - now))
     }
   }
+
+  useImperativeHandle(ref, () => ({
+    fetchLogs
+  }))
 
   useEffect(() => {
     // 初始加载
     fetchLogs()
 
     // 设置定时器
-    timerRef.current = setInterval(fetchLogs, 5000)
+    timerRef.current = setInterval(fetchLogs, 15000)
 
     // 清理函数
     return () => {
@@ -59,10 +73,6 @@ export function AppLog({appName, onLoading}: AppLogProps) {
       bottomRef.current.scrollIntoView({behavior: "instant"});
     }
   }, [logDetail]);
-
-  useEffect(() => {
-    onLoading(loading)
-  }, [loading]);
 
   return (
     <ScrollArea className="h-full">
@@ -84,4 +94,4 @@ export function AppLog({appName, onLoading}: AppLogProps) {
       <div ref={bottomRef}></div>
     </ScrollArea>
   )
-}
+})

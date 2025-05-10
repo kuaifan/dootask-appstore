@@ -1,10 +1,11 @@
 import type {AppItem} from "@/types/app"
+import type {AppLogRef} from "@/components/app-log.tsx"
 import {Button} from "@/components/ui/button"
 import {ScrollArea} from "@/components/ui/scroll-area.tsx";
 import {ExternalLink, LoaderCircle, RefreshCw} from "lucide-react"
 import {useTranslation} from "react-i18next";
 import {requestAPI} from "@dootask/tools";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 import {Skeleton} from "./ui/skeleton";
 import ReactMarkdown from "react-markdown"
 import "@/styles/github-markdown-light.css"
@@ -23,6 +24,7 @@ export function AppDetail({app, onInstall, onUninstall}: AppDetailProps) {
   const [appDetail, setAppDetail] = useState<AppItem>(app)
   const [activeTab, setActiveTab] = useState("detail")
   const [isRefreshing, setIsRefreshing] = useState(false)
+  const appLogRef = useRef<AppLogRef>(null)
 
   useEffect(() => {
     requestAPI({
@@ -40,6 +42,10 @@ export function AppDetail({app, onInstall, onUninstall}: AppDetailProps) {
       setLoading(false)
     })
   }, [app]);
+
+  const handleRefresh = () => {
+    appLogRef.current?.fetchLogs()
+  }
 
   return (
     <div className="p-6 flex-1 h-0 flex flex-col">
@@ -89,7 +95,7 @@ export function AppDetail({app, onInstall, onUninstall}: AppDetailProps) {
             <TabsTrigger className="px-4" value="log">{t('label.log')}</TabsTrigger>
           </TabsList>
           {activeTab === 'log' && (
-            <Button variant="ghost" size="icon" className="rounded-full">
+            <Button variant="ghost" size="icon" className="rounded-full" onClick={handleRefresh}>
               {isRefreshing ? <LoaderCircle className="animate-spin" size={16}/> : <RefreshCw size={16}/>}
             </Button>
           )}
@@ -120,7 +126,7 @@ export function AppDetail({app, onInstall, onUninstall}: AppDetailProps) {
         </TabsContent>
         <TabsContent value="log" className="flex-1 h-0">
           {/* 日志内容 */}
-          <AppLog appName={appDetail.name} onLoading={setIsRefreshing}/>
+          <AppLog ref={appLogRef} appName={appDetail.name} onLoading={setIsRefreshing}/>
         </TabsContent>
       </Tabs>
     </div>
