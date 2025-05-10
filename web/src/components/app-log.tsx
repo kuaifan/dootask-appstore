@@ -10,7 +10,7 @@ interface AppLogProps {
 }
 
 export interface AppLogRef {
-  fetchLogs: () => Promise<void>
+  fetchLogs: (isQueue?: boolean) => Promise<void>
 }
 
 export const AppLog = forwardRef<AppLogRef, AppLogProps>(({appName, onLoading}, ref) => {
@@ -21,7 +21,7 @@ export const AppLog = forwardRef<AppLogRef, AppLogProps>(({appName, onLoading}, 
   const isRequestingRef = useRef(false)
   const timerRef = useRef<NodeJS.Timeout>(null)
 
-  const fetchLogs = async () => {
+  const fetchLogs = async (isQueue = true) => {
     if (isRequestingRef.current) return
 
     const now = Date.now()
@@ -45,7 +45,7 @@ export const AppLog = forwardRef<AppLogRef, AppLogProps>(({appName, onLoading}, 
         setLoading(false)
         onLoading?.(false)
         isRequestingRef.current = false
-      }, 1000 - (Date.now() - now))
+      }, isQueue ? 1000 - (Date.now() - now) : 0)
     }
   }
 
@@ -55,10 +55,12 @@ export const AppLog = forwardRef<AppLogRef, AppLogProps>(({appName, onLoading}, 
 
   useEffect(() => {
     // 初始加载
-    fetchLogs()
+    fetchLogs(false)
 
     // 设置定时器
-    timerRef.current = setInterval(fetchLogs, 15000)
+    timerRef.current = setInterval(() => {
+      fetchLogs(false)
+    }, 15000)
 
     // 清理函数
     return () => {

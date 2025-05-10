@@ -51,17 +51,19 @@ fields:                           # Define configurable fields for the applicati
       en: OKR Service Port
       zh: OKR服务端口
     type: number                  # Field type (number, text, select)
+    default: 3306                 # Default value
+  - name: INSTALL_TYPE
+    label:
+      en: Install type
+      zh: 安装类型
+    type: select
     required: true                # Whether the field is required (default: false)
     options:                      # Select options (optional, only for select type)
-      - label:                    # Option label (multi-language support)
-          en: 8080
-          zh: 8080
-        value: 8080               # Option value
-      - label:
-          en: 8081
-          zh: 8081
-        value: 8081
-    default: 8080                 # Default value
+      - label: Docker             # Option label (multi-language support)
+        value: docker             # Option value
+      - label: Docker Compose
+        value: docker-compose
+    default: docker
 
 # Version uninstallation requirements (optional)
 require_uninstalls:               # Specify which versions require uninstallation first
