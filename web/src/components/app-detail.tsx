@@ -44,6 +44,7 @@ export function AppDetail({app, onInstall, onUninstall}: AppDetailProps) {
   }, [app]);
 
   const handleRefresh = () => {
+    setActiveTab('log')
     appLogRef.current?.fetchLogs()
   }
 
@@ -88,7 +89,7 @@ export function AppDetail({app, onInstall, onUninstall}: AppDetailProps) {
       <div className="border-b border-gray-200 mb-3"/>
 
       {/* 详情、日志 */}
-      <Tabs defaultValue="detail" className="flex-1 flex flex-col h-0" onValueChange={setActiveTab}>
+      <Tabs defaultValue="detail" value={activeTab} className="flex-1 flex flex-col h-0" onValueChange={setActiveTab}>
         <div className="flex items-center mb-4 gap-2">
           <TabsList>
             <TabsTrigger className="px-4" value="detail">{t('label.detail')}</TabsTrigger>

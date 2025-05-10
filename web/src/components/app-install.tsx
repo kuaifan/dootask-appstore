@@ -11,7 +11,6 @@ import {useTranslation} from "react-i18next"
 import {Loader2} from "lucide-react";
 import {useState} from "react";
 import {requestAPI} from "@dootask/tools";
-import mitt from "mitt";
 
 interface AppInstallProps {
   app: AppItem
@@ -22,7 +21,6 @@ interface AppInstallProps {
 export function AppInstall({app, zIndex, onClose}: AppInstallProps) {
   const {t} = useTranslation()
   const [installing, setInstalling] = useState(false)
-  const emitter = mitt()
 
   const formSchema = z.object({
     name: z.string(),
@@ -96,7 +94,6 @@ export function AppInstall({app, zIndex, onClose}: AppInstallProps) {
       }),
     }).then(() => {
       onClose?.()
-      emitter.emit('refreshLog', app.name)
     }).catch((error) => {
       console.error(error)
     }).finally(() => {

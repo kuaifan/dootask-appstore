@@ -1,9 +1,8 @@
-import {type Any, requestAPI} from "@dootask/tools";
+import {requestAPI} from "@dootask/tools";
 import {useEffect, useState, useRef, forwardRef, useImperativeHandle} from "react";
 import {Skeleton} from "./ui/skeleton";
 import {useTranslation} from "react-i18next";
 import {ScrollArea} from "./ui/scroll-area";
-import mitt from "mitt";
 
 interface AppLogProps {
   appName: string
@@ -21,7 +20,6 @@ export const AppLog = forwardRef<AppLogRef, AppLogProps>(({appName, onLoading}, 
   const bottomRef = useRef<HTMLDivElement>(null)
   const isRequestingRef = useRef(false)
   const timerRef = useRef<NodeJS.Timeout>(null)
-  const emitter = mitt()
 
   const fetchLogs = async (isQueue = true) => {
     if (isRequestingRef.current) return
@@ -77,18 +75,6 @@ export const AppLog = forwardRef<AppLogRef, AppLogProps>(({appName, onLoading}, 
       bottomRef.current.scrollIntoView({behavior: "instant"});
     }
   }, [logDetail]);
-
-  useEffect(() => {
-    const refreshLog = (name: Any) => {
-      if (name === appName) {
-        fetchLogs(false)
-      }
-    }
-    emitter.on('refreshLog', refreshLog);
-    return () => {
-      emitter.off('refreshLog', refreshLog);
-    }
-  }, [emitter]);
 
   return (
     <ScrollArea className="h-full">
