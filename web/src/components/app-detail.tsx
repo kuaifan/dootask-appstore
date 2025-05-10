@@ -48,9 +48,9 @@ export function AppDetail({app}: AppDetailProps) {
         </div>
         <div className="flex flex-col items-end gap-3 min-w-[120px]">
           {appDetail.local.status === 'installed' ? (
-            <Button className="bg-red-100 text-red-700 hover:bg-red-200 rounded-lg px-6 py-2 font-semibold">{t('app.uninstall')}</Button>
+            <Button className="bg-red-100 text-red-700 hover:bg-red-200 rounded-lg px-6 py-2 font-semibold cursor-pointer">{t('app.uninstall')}</Button>
           ) : (
-            <Button className="bg-yellow-100 text-yellow-700 hover:bg-yellow-200 rounded-lg px-6 py-2 font-semibold">{t('app.install')}</Button>
+            <Button className="bg-yellow-100 text-yellow-700 hover:bg-yellow-200 rounded-lg px-6 py-2 font-semibold cursor-pointer">{t('app.install')}</Button>
           )}
           <div className="flex flex-wrap justify-end gap-2 mt-2">
             {appDetail.info.website && (
@@ -86,8 +86,10 @@ export function AppDetail({app}: AppDetailProps) {
             </div>
           ) : (
             appDetail.document ? (
-              <div className="prose max-w-none app-markdown-body">
-                <ReactMarkdown>{appDetail.document}</ReactMarkdown>
+              <div className="flex w-full">
+                <div className="flex-1 w-0 prose select-text app-markdown-body">
+                  <ReactMarkdown>{appDetail.document}</ReactMarkdown>
+                </div>
               </div>
             ) : (
               <div className="text-sm text-gray-500 mb-4">

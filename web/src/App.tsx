@@ -1,7 +1,8 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import {Button} from './components/ui/button'
+import {Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle} from "./components/ui/drawer"
 import {useTranslation} from "react-i18next";
-import {props, requestAPI, backApp, nextZIndex} from "@dootask/tools";
+import {props, requestAPI, backApp, nextZIndex, interceptBack} from "@dootask/tools";
 import {X, ChevronLeft, ChevronRight, LoaderCircle, RefreshCw} from "lucide-react";
 import {AppSearch} from './components/app-search';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from './components/ui/tabs';
@@ -10,10 +11,11 @@ import type {AppItem} from "@/types/app.ts";
 import i18n from "@/i18n";
 import { AppDetail } from "./components/app-detail"
 import { appMockData } from "./mock/app.ts";
-import {Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerOverlay, DrawerTitle} from "./components/ui/drawer"
+import {beforeClose} from "@/lib/utils.ts";
 
 function App() {
   const {t} = useTranslation();
+  const mainRef = useRef(null);
   const [apps, setApps] = useState<AppItem[]>([]);
   const [selectedApp, setSelectedApp] = useState<AppItem | null>(null)
   const [modalZIndex , setModalZIndex] = useState(1000);
@@ -28,6 +30,14 @@ function App() {
     i18n.changeLanguage(props.languageName).then(() => {})
     // 获取应用列表数据
     fetchApps();
+    // 拦截返回事件
+    const unsubscribe = interceptBack(() => {
+      return beforeClose();
+    })
+    // 清理函数
+    return () => {
+      unsubscribe();
+    }
   }, [])
 
   const fetchApps = () => {
@@ -113,9 +123,9 @@ function App() {
   }
 
   return (
-    <main className="min-h-screen p-4 md:p-6">
+    <main ref={mainRef} className="min-h-screen p-4 md:p-6">
       <div className="container mx-auto">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-3 md:mb-6">
           <div className="flex items-center">
             {!props.isSubElectron && (
               <ChevronLeft className="min-md:hidden mr-4" onClick={backApp}/>
@@ -130,7 +140,7 @@ function App() {
           </div>
         </div>
 
-        <div className="flex gap-x-4 mb-6">
+        <div className="flex gap-x-4 mb-3 md:mb-6">
           <Button
             variant={filter === 'all' ? "secondary" : "ghost"}
             className="px-4 py-2 text-sm rounded-full"
@@ -145,9 +155,9 @@ function App() {
           </Button>
         </div>
 
-        {availableCategories.length > 1 && (
-          <Tabs defaultValue="all" className="mb-6" value={category} onValueChange={setCategory}>
-            <TabsList className={`flex w-full max-w-md light:bg-gray-100`}>
+        {availableCategories.length > 2 && (
+          <Tabs defaultValue="all" className="mb-3 md:mb-6" value={category} onValueChange={setCategory}>
+            <TabsList className="flex w-full md:max-w-md light:bg-gray-100 mb-3 md:mb-6">
               {availableCategories.map((cat) => (
                 <TabsTrigger key={cat} value={cat} className="text-sm">
                   {cat === 'all' ? t('app.all') : cat}
@@ -156,7 +166,7 @@ function App() {
             </TabsList>
 
             {availableCategories.map((tabValue) => (
-              <TabsContent key={tabValue} value={tabValue} className="mt-6">
+              <TabsContent key={tabValue} value={tabValue}>
                 {loading ? (
                   <div className="text-center py-10">
                     <p>{t('app.loading')}</p>
@@ -186,7 +196,7 @@ function App() {
         )}
 
         {getFilteredApps().length > 0 && (
-          <div className="flex justify-between items-center mt-8 text-sm text-gray-500">
+          <div className="flex justify-between items-center text-sm text-gray-500 mt-4 md:mt-8">
             <div>{t('app.totalItems', {count: getFilteredApps().length})}</div>
             <div className="flex items-center gap-x-2">
               <Button variant="outline" size="icon" className="w-7 h-7">
@@ -203,15 +213,22 @@ function App() {
           </div>
         )}
 
-        <Drawer open={!!selectedApp} direction={"right"}  onOpenChange={(open) => !open && setSelectedApp(null)}>
-          <DrawerOverlay style={{ zIndex: modalZIndex }} />
-          <DrawerContent style={{ zIndex: modalZIndex + 1 }} className="rounded-l-xl !w-[700px] !max-w-[90vw]">
+        <Drawer
+          modal={false}
+          container={mainRef.current}
+          open={!!selectedApp}
+          direction={"right"}
+          onOpenChange={(open) => !open && setSelectedApp(null)}>
+          {selectedApp && (
+            <div className="fixed top-0 right-0 left-0 bottom-0 bg-black/40 animate-fade-in pointer-events-auto" style={{ zIndex: modalZIndex }} onClick={() => setSelectedApp(null)}></div>
+          )}
+          <DrawerContent style={{ zIndex: modalZIndex + 1 }} className="rounded-l-xl !w-[1000px] !max-w-[90vw]">
             <DrawerHeader>
               <DrawerTitle className="flex items-center justify-between">
                 <div className="text-base">
                   {t('app.detail')}
                 </div>
-                <DrawerClose role="close" className="cursor-pointer">
+                <DrawerClose role="app-store-close" className="cursor-pointer">
                   <X size={20}/>
                 </DrawerClose>
               </DrawerTitle>
