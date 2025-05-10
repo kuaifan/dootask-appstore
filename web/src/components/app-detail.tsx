@@ -8,13 +8,15 @@ import {useEffect, useState} from "react";
 import {Skeleton} from "./ui/skeleton";
 import ReactMarkdown from "react-markdown"
 import "@/styles/github-markdown-light.css"
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "./ui/tabs";
+import {AppLog} from "@/components/app-log.tsx";
 
 interface AppDetailProps {
   app: AppItem
 }
 
 export function AppDetail({app}: AppDetailProps) {
-  const {t} = useTranslation();
+  const {t} = useTranslation()
   const [loading, setLoading] = useState(true)
   const [appDetail, setAppDetail] = useState<AppItem>(app)
 
@@ -73,32 +75,43 @@ export function AppDetail({app}: AppDetailProps) {
       </div>
 
       {/* 分割线 */}
-      <div className="border-b border-gray-200 mb-6"/>
+      <div className="border-b border-gray-200 mb-3"/>
 
-      {/* Main Features */}
-      <div className="flex-1 h-0 overflow-hidden">
-        <ScrollArea className="h-full">
-          {loading ? (
-            <div className="flex flex-col gap-3">
-              <Skeleton className="h-4 w-[80%]"/>
-              <Skeleton className="h-4 w-[70%]"/>
-              <Skeleton className="h-4 w-[40%]"/>
-            </div>
-          ) : (
-            appDetail.document ? (
-              <div className="flex w-full">
-                <div className="flex-1 w-0 prose select-text app-markdown-body">
-                  <ReactMarkdown>{appDetail.document}</ReactMarkdown>
-                </div>
+      {/* 详情、日志 */}
+      <Tabs defaultValue="detail" className="flex-1 flex flex-col h-0">
+        <TabsList className="mb-4">
+          <TabsTrigger className="px-4" value="detail">{t('label.detail')}</TabsTrigger>
+          <TabsTrigger className="px-4" value="log">{t('label.log')}</TabsTrigger>
+        </TabsList>
+        <TabsContent value="detail" className="flex-1 h-0">
+          {/* 详情内容 */}
+          <ScrollArea className="h-full">
+            {loading ? (
+              <div className="flex flex-col gap-3">
+                <Skeleton className="h-4 w-[80%]"/>
+                <Skeleton className="h-4 w-[70%]"/>
+                <Skeleton className="h-4 w-[40%]"/>
               </div>
             ) : (
-              <div className="text-sm text-gray-500 mb-4">
-                {t('app.no_document')}
-              </div>
-            )
-          )}
-        </ScrollArea>
-      </div>
+              appDetail.document ? (
+                <div className="flex w-full">
+                  <div className="flex-1 w-0 prose select-text app-markdown-body">
+                    <ReactMarkdown>{appDetail.document}</ReactMarkdown>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-sm text-gray-500 mb-4">
+                  {t('app.no_document')}
+                </div>
+              )
+            )}
+          </ScrollArea>
+        </TabsContent>
+        <TabsContent value="log" className="flex-1 h-0">
+          {/* 日志内容 */}
+          <AppLog appName={appDetail.name}/>
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }
