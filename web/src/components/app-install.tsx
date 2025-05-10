@@ -34,10 +34,18 @@ export function AppInstall({ app, zIndex }: AppInstallProps) {
             }, {
                 message: t('install.errors.memory_invalid')
             }),
-        ...app.info.fields.reduce((acc, field) => ({
-            ...acc,
-            [field.name]: z.string().min(1, { message: t('install.errors.field_required', { field: field.label }) }),
-        }), {}),
+        ...app.info.fields.reduce((acc, field) => {
+            const schema = field.type === "number" 
+                ? z.coerce.number()
+                : z.string();
+
+            return {
+                ...acc,
+                [field.name]: field.required
+                    ? schema.min(1, { message: t('install.errors.field_required', { field: field.label }) })
+                    : schema.optional(),
+            };
+        }, {}),
     })
 
     type FormValues = z.infer<typeof formSchema>
@@ -46,13 +54,12 @@ export function AppInstall({ app, zIndex }: AppInstallProps) {
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: app.info.name,
-            version: "",
-            cpuLimit: "",
-            memoryLimit: "",
-            ...app.info.fields.reduce((acc, field) => ({
-                ...acc,
-                [field.name]: field.default?.toString() || "",
-            }), {}),
+            version: app.versions[0]?.version || "",
+            cpuLimit: "0",
+            memoryLimit: "0",
+            ...Object.fromEntries(
+                app.info.fields.map((field) => [field.name, field.default || ""])
+            ),
         } as FormValues,
     })
 
@@ -87,7 +94,7 @@ export function AppInstall({ app, zIndex }: AppInstallProps) {
                                 control={form.control}
                                 name="name"
                                 render={({ field }) => (
-                                    <FormItem className="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:items-start">
+                                    <FormItem className="grid grid-cols-1 gap-3 sm:grid-cols-4 sm:items-start">
                                         <FormLabel className="sm:text-right min-h-9">{t('install.name')}</FormLabel>
                                         <div className="sm:col-span-3">
                                             <FormControl>
@@ -102,7 +109,7 @@ export function AppInstall({ app, zIndex }: AppInstallProps) {
                                 control={form.control}
                                 name="version"
                                 render={({ field }) => (
-                                    <FormItem className="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:items-start">
+                                    <FormItem className="grid grid-cols-1 gap-3 sm:grid-cols-4 sm:items-start">
                                         <FormLabel className="sm:text-right min-h-9">{t('install.version')}</FormLabel>
                                         <div className="sm:col-span-3">
                                             <Select onValueChange={field.onChange} defaultValue="latest">
@@ -138,16 +145,34 @@ export function AppInstall({ app, zIndex }: AppInstallProps) {
                                         control={form.control}
                                         name={field.name as keyof FormValues}
                                         render={({ field: formField }) => (
-                                            <FormItem className="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:items-start">
+                                            <FormItem className="grid grid-cols-1 gap-3 sm:grid-cols-4 sm:items-start">
                                                 <FormLabel className="sm:text-right min-h-9">{field.label}</FormLabel>
                                                 <div className="sm:col-span-3">
                                                     <FormControl>
-                                                        <Input
-                                                            {...formField}
-                                                            type={field.type === "number" ? "number" : "text"}
-                                                            placeholder={field.placeholder}
-                                                            defaultValue={field.default}
-                                                        />
+                                                        {field.type === "select" ? (
+                                                            <Select 
+                                                                onValueChange={formField.onChange} 
+                                                                defaultValue={field.default?.toString()}
+                                                            >
+                                                                <SelectTrigger className="w-full">
+                                                                    <SelectValue placeholder={field.placeholder || t('install.select_version')} />
+                                                                </SelectTrigger>
+                                                                <SelectContent style={{ zIndex: zIndex + 1 }}>
+                                                                    {field.options?.map((option) => (
+                                                                        <SelectItem key={option.value} value={option.value}>
+                                                                            {option.label}
+                                                                        </SelectItem>
+                                                                    ))}
+                                                                </SelectContent>
+                                                            </Select>
+                                                        ) : (
+                                                            <Input
+                                                                {...formField}
+                                                                type={field.type === "number" ? "number" : "text"}
+                                                                placeholder={field.placeholder}
+                                                                defaultValue={field.default}
+                                                            />
+                                                        )}
                                                     </FormControl>
                                                     <FormMessage />
                                                 </div>
@@ -166,7 +191,7 @@ export function AppInstall({ app, zIndex }: AppInstallProps) {
                                 control={form.control}
                                 name="cpuLimit"
                                 render={({ field }) => (
-                                    <FormItem className="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:items-start">
+                                    <FormItem className="grid grid-cols-1 gap-3 sm:grid-cols-4 sm:items-start">
                                         <FormLabel className="sm:text-right min-h-9">{t('install.cpu_limit')}</FormLabel>
                                         <div className="sm:col-span-3">
                                             <FormControl>
@@ -181,7 +206,7 @@ export function AppInstall({ app, zIndex }: AppInstallProps) {
                                 control={form.control}
                                 name="memoryLimit"
                                 render={({ field }) => (
-                                    <FormItem className="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:items-start">
+                                    <FormItem className="grid grid-cols-1 gap-3 sm:grid-cols-4 sm:items-start">
                                         <FormLabel className="sm:text-right min-h-9">{t('install.memory_limit')}</FormLabel>
                                         <div className="sm:col-span-3">
                                             <FormControl>

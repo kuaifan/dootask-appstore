@@ -50,7 +50,17 @@ fields:                           # Define configurable fields for the applicati
     placeholder:                  # Field placeholder (multi-language support)
       en: OKR Service Port
       zh: OKR服务端口
-    type: number                  # Field type (number, text, select, etc.)
+    type: number                  # Field type (number, text, select)
+    required: true                # Whether the field is required (default: false)
+    options:                      # Select options (optional, only for select type)
+      - label:                    # Option label (multi-language support)
+          en: 8080
+          zh: 8080
+        value: 8080               # Option value
+      - label:
+          en: 8081
+          zh: 8081
+        value: 8081
     default: 8080                 # Default value
 
 # Version uninstallation requirements (optional)

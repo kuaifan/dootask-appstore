@@ -17,3 +17,25 @@ entry_points:
       zh: 应用商店
     url: apps/appstore/list
     icon: ./logo.svg
+
+fields:
+  - name: PROXY_PORT
+    label: 
+      en: Proxy port
+      zh: 代理端口
+    placeholder: 
+      en: Proxy port
+      zh: 代理端口
+    type: number
+    default: 3306
+  - name: INSTALL_TYPE
+    label:
+      en: Install type
+      zh: 安装类型
+    type: select
+    options:
+      - label: Docker
+        value: docker
+      - label: Docker Compose
+        value: docker-compose
+    default: docker

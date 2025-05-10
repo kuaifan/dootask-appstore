@@ -4,6 +4,11 @@ export interface AppField {
   default: string | number;
   label: string;
   placeholder: string;
+  required?: boolean;
+  options?: Array<{
+    label: string;
+    value: string;
+  }>;
 }
 
 export interface RequireUninstall {
