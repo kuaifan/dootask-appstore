@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import {Button} from './components/ui/button'
 import {useTranslation} from "react-i18next";
-import {getLanguageName, requestAPI} from "@dootask/tools";
+import {props, requestAPI, backApp} from "@dootask/tools";
 import {ChevronLeft, ChevronRight, LoaderCircle, RefreshCw} from "lucide-react";
 import {AppSearch} from './components/app-search';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from './components/ui/tabs';
@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     // 设置语言
-    i18n.changeLanguage(getLanguageName()).then(() => {})
+    i18n.changeLanguage(props.languageName).then(() => {})
     // 获取应用列表数据
     fetchApps();
   }, [])
@@ -102,10 +102,13 @@ function App() {
   };
 
   return (
-    <main className="min-h-screen p-6">
+    <main className="min-h-screen p-4 md:p-6">
       <div className="container mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div className="flex items-center">
+            {!props.isSubElectron && (
+              <ChevronLeft className="min-md:hidden mr-4" onClick={backApp}/>
+            )}
             <h1 className="text-2xl font-bold mr-2">{t('common.title')}</h1>
             <Button variant="ghost" size="icon" className="rounded-full" onClick={handleRefresh}>
               {loading ? <LoaderCircle className="animate-spin"/> : <RefreshCw/>}
