@@ -211,7 +211,7 @@ function App() {
                 <div className="text-base">
                   {t('app.detail')}
                 </div>
-                <DrawerClose className="cursor-pointer">
+                <DrawerClose role="close" className="cursor-pointer">
                   <X size={20}/>
                 </DrawerClose>
               </DrawerTitle>
